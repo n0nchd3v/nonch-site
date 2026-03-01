@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gymmit. — track your gym, build your streak</title>
+  <meta name="description" content="gymmit. is the fitness tracking app that keeps you consistent. Log workouts, track calories, and compete with your community." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue: #0066FF;
+      --blue-light: #3385FF;
+      --blue-dim: rgba(0, 102, 255, 0.1);
+      --blue-border: rgba(0, 102, 255, 0.25);
+      --bg: #000000;
+      --surface: #0a0a0a;
+      --surface2: #111111;
+      --surface3: #1a1a1a;
+      --border: rgba(255,255,255,0.07);
+      --text: #e8e8e8;
+      --muted: #5a5a5a;
+      --white: #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* grain */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-brand {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-back {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-left: 1px solid var(--border);
+      padding-left: 1.5rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--blue) !important;
+      color: var(--white) !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 6px;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+      font-size: 0.82rem !important;
+      font-weight: 700 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--blue-light) !important; }
+
+    /* ── SHARED ── */
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.9rem;
+    }
+
+    section { position: relative; z-index: 1; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 9rem 2rem 5rem;
+    }
+
+    .hero-logo {
+      font-size: clamp(5rem, 16vw, 11rem);
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: -4px;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.15s forwards;
+    }
+
+    .hero-headline {
+      font-size: clamp(1.15rem, 2.8vw, 1.6rem);
+      font-weight: 600;
+      color: var(--white);
+      max-width: 540px;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.28s forwards;
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--muted);
+      max-width: 440px;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.38s forwards;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 0.9rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.48s forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.72rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: all 0.2s;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .btn-primary { background: var(--blue); color: var(--white); }
+    .btn-primary:hover { background: var(--blue-light); }
+    .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--blue-border); color: var(--white); }
+
+    /* hero media */
+    .hero-media {
+      margin-top: 4rem;
+      width: 100%;
+      max-width: 960px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.6s forwards;
+    }
+
+    .media-ph {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--surface2);
+      border: 1px dashed var(--blue-border);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      color: rgba(0,102,255,0.4);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── STATS ── */
+    #stats {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.8rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── FEATURES OVERVIEW ── */
+    #features {
+      padding: 7rem 0;
+    }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 4.5vw, 3rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+    }
+
+    .section-title span { color: var(--blue); }
+
+    .section-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 460px;
+      margin: 1rem auto 0;
+      font-weight: 400;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .feat-card {
+      background: var(--surface);
+      padding: 2rem 2rem 2.2rem;
+      transition: background 0.2s;
+      border-top: 2px solid transparent;
+    }
+
+    .feat-card:hover {
+      background: var(--surface2);
+      border-top-color: var(--blue);
+    }
+
+    .feat-num {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--blue);
+      opacity: 0.55;
+      margin-bottom: 1.1rem;
+    }
+
+    .feat-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.55rem;
+      letter-spacing: -0.2px;
+    }
+
+    .feat-desc {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.68;
+      font-weight: 400;
+    }
+
+    /* ── DEEP DIVE ROWS ── */
+    #showcase {
+      padding: 7rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .showcase-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-bottom: 8rem;
+    }
+
+    .showcase-row:last-child { margin-bottom: 0; }
+    .showcase-row.flip { direction: rtl; }
+    .showcase-row.flip > * { direction: ltr; }
+
+    .showcase-heading {
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.8px;
+      line-height: 1.2;
+      margin-bottom: 0.9rem;
+    }
+
+    .showcase-heading span { color: var(--blue); }
+
+    .showcase-body {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.78;
+      font-weight: 400;
+      margin-bottom: 1.4rem;
+    }
+
+    .feat-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .feat-list li {
+      font-size: 0.84rem;
+      color: var(--text);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .feat-list li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+
+    /* media placeholders */
+    .sc-ph {
+      width: 100%;
+      aspect-ratio: 9/17;
+      background: var(--surface2);
+      border: 1px dashed var(--blue-border);
+      border-radius: 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: rgba(0,102,255,0.35);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .sc-ph-wide {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--surface2);
+      border: 1px dashed var(--blue-border);
+      border-radius: 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: rgba(0,102,255,0.35);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .ph-note { font-size: 0.58rem; opacity: 0.5; }
+
+    /* ── VIDEO ── */
+    #video-section {
+      padding: 7rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .video-ph {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--surface2);
+      border: 1px dashed var(--blue-border);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    .play-btn {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .play-btn:hover { background: var(--blue-light); }
+
+    .video-caption {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(0,102,255,0.45);
+    }
+
+    /* ── SCREENSHOTS ── */
+    #screenshots {
+      padding: 7rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .shots-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .shot-ph {
+      aspect-ratio: 9/19;
+      background: var(--surface2);
+      border: 1px dashed var(--blue-border);
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      color: rgba(0,102,255,0.3);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: border-color 0.2s;
+    }
+
+    .shot-ph:hover { border-color: rgba(0,102,255,0.55); }
+
+    /* ── DOWNLOAD CTA ── */
+    #download {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .download-title {
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 1.2rem;
+    }
+
+    .download-title span { color: var(--blue); }
+
+    .download-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 380px;
+      margin: 0 auto 2.5rem;
+      font-weight: 400;
+    }
+
+    .download-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 3rem 2.5rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand { font-size: 1.7rem; font-weight: 700; color: var(--blue); letter-spacing: -0.5px; }
+    .footer-tagline { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; font-weight: 400; }
+
+    .footer-tagline a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-tagline a:hover { color: var(--text); }
+
+    .footer-links { display: flex; gap: 3.5rem; flex-wrap: wrap; }
+
+    .footer-col h4 {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+
+    .footer-col ul a {
+      font-size: 0.84rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-col ul a.hl { color: var(--blue); }
+    .footer-col ul a.hl:hover { color: var(--blue-light); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-bottom p { font-size: 0.75rem; color: var(--muted); }
+
+    .footer-legal { display: flex; gap: 1.5rem; }
+    .footer-legal a { font-size: 0.75rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-legal a:hover { color: var(--blue); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .showcase-row { grid-template-columns: 1fr; gap: 2.5rem; }
+      .showcase-row.flip { direction: ltr; }
+      .shots-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .nav-back { display: none; }
+      .features-grid { grid-template-columns: 1fr; }
+      footer { padding: 2.5rem 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-left">
+      <a class="nav-brand" href="#">gymmit.</a>
+      <a class="nav-back" href="https://nonch.uk">&larr; nonch.uk</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#showcase">App</a></li>
+      <li><a href="#screenshots">Screenshots</a></li>
+      <li><a href="#download" class="nav-cta">Download</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <h1 class="hero-logo">gymmit.</h1>
+    <h2 class="hero-headline">Track your gym. Build your streak. Compete with everyone.</h2>
+    <p class="hero-sub">Log workouts, track calories, climb the leaderboard, and share progress with a community that keeps you accountable.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn btn-primary">
+        <svg width="17" height="17" fill="none" viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.37.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.39-1.32 2.76-2.54 3.99zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" fill="currentColor"/></svg>
+        Download on App Store
+      </a>
+      <a href="#features" class="btn btn-secondary">See Features</a>
+    </div>
+
+    <div class="hero-media wrap" style="padding:0;">
+      <!--
+        Replace with your hero image or video:
+        <img src="hero-screenshot.png" alt="gymmit app" style="width:100%;border-radius:16px;">
+        or
+        <video autoplay muted loop playsinline style="width:100%;border-radius:16px;">
+          <source src="demo.mp4" type="video/mp4">
+        </video>
+      -->
+      <div class="media-ph">
+        <span>+ INSERT HERO IMAGE OR VIDEO</span>
+        <span style="font-size:0.62rem;opacity:0.5;">Replace this div with &lt;img&gt; or &lt;video&gt;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div id="stats">
+    <div class="stats-inner">
+      <div>
+        <div class="stat-value">iOS</div>
+        <div class="stat-label">Platform</div>
+      </div>
+      <div>
+        <div class="stat-value">Free</div>
+        <div class="stat-label">To Download</div>
+      </div>
+      <div>
+        <div class="stat-value">6+</div>
+        <div class="stat-label">Core Features</div>
+      </div>
+      <div>
+        <div class="stat-value">v1.0</div>
+        <div class="stat-label">Current Version</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES OVERVIEW -->
+  <section id="features">
+    <div class="wrap">
+      <div class="features-header">
+        <p class="tag">What's inside</p>
+        <h2 class="section-title">Everything a gym-goer<br><span>actually needs.</span></h2>
+        <p class="section-sub">Built around the things that keep you consistent — not a bloated wellness app.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feat-card">
+          <div class="feat-num">01</div>
+          <div class="feat-title">Workout Tracking</div>
+          <div class="feat-desc">Log every set, rep, and weight in real time. Build custom workouts, schedule sessions, and see your full training history at a glance.</div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">02</div>
+          <div class="feat-title">Calorie &amp; Macro Tracking</div>
+          <div class="feat-desc">Log meals across Breakfast, Lunch, Dinner, and Snacks. Set daily calorie and macro goals and track progress against them every day.</div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">03</div>
+          <div class="feat-title">Streaks</div>
+          <div class="feat-desc">Keep your workout streak, calorie streak, and post streak alive. Lose it once and start over — the pressure is the point.</div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">04</div>
+          <div class="feat-title">Points &amp; Leaderboards</div>
+          <div class="feat-desc">Earn points for every session logged, streak maintained, and goal hit. Compete on the leaderboard and see how you rank against the community.</div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">05</div>
+          <div class="feat-title">Social Feed</div>
+          <div class="feat-desc">Share workouts, nutrition wins, and milestones with your followers. Like, comment, and keep each other accountable on a feed built for gym-goers.</div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">06</div>
+          <div class="feat-title">Exercise Library</div>
+          <div class="feat-desc">Browse a curated library of exercises with demo videos. Filter by muscle group, equipment, or difficulty and add straight to your workout.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEEP DIVES -->
+  <section id="showcase">
+    <div class="wrap">
+
+      <!-- Workout Tracking -->
+      <div class="showcase-row">
+        <div>
+          <p class="tag">Workout Tracking</p>
+          <h3 class="showcase-heading">Log every set.<br><span>Beat every record.</span></h3>
+          <p class="showcase-body">Build workouts from scratch or from templates. Log sets, reps, and weights in real time at the gym. gymmit. automatically tracks personal records so every session gives you something to chase.</p>
+          <ul class="feat-list">
+            <li>Custom workout builder</li>
+            <li>Live session logging with rest timers</li>
+            <li>Automatic personal record tracking</li>
+            <li>Full history and volume trends</li>
+            <li>Workout scheduling</li>
+          </ul>
+        </div>
+        <div>
+          <!--
+            Replace with: <img src="workout-screen.png" alt="Workout tracking" style="width:100%;border-radius:22px;">
+          -->
+          <div class="sc-ph">
+            <span>+ Workout Screen</span>
+            <span class="ph-note">9:16 PNG recommended</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calorie Tracking -->
+      <div class="showcase-row flip">
+        <div>
+          <p class="tag">Calorie &amp; Nutrition</p>
+          <h3 class="showcase-heading">Hit your macros.<br><span>Every single day.</span></h3>
+          <p class="showcase-body">Log food meal by meal — Breakfast, Lunch, Dinner, and Snacks. Search millions of foods, save your go-tos, and build meal templates for things you eat regularly. Your calorie and macro goals are always front and centre.</p>
+          <ul class="feat-list">
+            <li>Meal-by-meal food logging</li>
+            <li>Daily calorie and macro goals</li>
+            <li>Saved foods and meal templates</li>
+            <li>Powered by the FatSecret food database</li>
+            <li>Full nutrition history by date</li>
+          </ul>
+        </div>
+        <div>
+          <!--
+            Replace with: <img src="nutrition-screen.png" alt="Calorie tracking" style="width:100%;border-radius:22px;">
+          -->
+          <div class="sc-ph">
+            <span>+ Nutrition Screen</span>
+            <span class="ph-note">9:16 PNG recommended</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leaderboards & Points -->
+      <div class="showcase-row">
+        <div>
+          <p class="tag">Points &amp; Leaderboards</p>
+          <h3 class="showcase-heading">Earn points.<br><span>Climb the board.</span></h3>
+          <p class="showcase-body">Every workout logged, every streak maintained, and every goal hit earns you points. The leaderboard shows exactly where you stand against everyone else — the motivation to keep going is built in.</p>
+          <ul class="feat-list">
+            <li>Points for workouts, streaks, and goals</li>
+            <li>Community leaderboard rankings</li>
+            <li>Workout streaks, calorie streaks, post streaks</li>
+            <li>Streak recovery and milestone tracking</li>
+          </ul>
+        </div>
+        <div>
+          <!--
+            Replace with: <img src="leaderboard-screen.png" alt="Leaderboard" style="width:100%;border-radius:22px;">
+          -->
+          <div class="sc-ph">
+            <span>+ Leaderboard Screen</span>
+            <span class="ph-note">9:16 PNG recommended</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social -->
+      <div class="showcase-row flip">
+        <div>
+          <p class="tag">Social</p>
+          <h3 class="showcase-heading">Train with people<br><span>who get it.</span></h3>
+          <p class="showcase-body">Share sessions, photos, and progress to a feed of people who actually go to the gym. Follow friends, react to posts, and let your streak do the talking. Public or private — you control what you share.</p>
+          <ul class="feat-list">
+            <li>Public feed and post sharing</li>
+            <li>Workout and streak posts</li>
+            <li>Likes, comments, and follows</li>
+            <li>Private and public post controls</li>
+            <li>Profile with avatar, cover, and stats</li>
+          </ul>
+        </div>
+        <div>
+          <!--
+            Replace with: <img src="feed-screen.png" alt="Social feed" style="width:100%;border-radius:22px;">
+          -->
+          <div class="sc-ph">
+            <span>+ Social Feed Screen</span>
+            <span class="ph-note">9:16 PNG recommended</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DEMO VIDEO -->
+  <section id="video-section">
+    <div class="wrap">
+      <div style="text-align:center;">
+        <p class="tag">App Walkthrough</p>
+        <h2 class="section-title">See it in <span>action.</span></h2>
+        <p class="section-sub" style="margin-bottom:0;">From first login to your first logged session.</p>
+      </div>
+      <!--
+        Replace the .video-ph block with your video:
+        Self-hosted:
+        <video controls poster="thumb.jpg" style="width:100%;border-radius:16px;margin-top:3rem;">
+          <source src="walkthrough.mp4" type="video/mp4">
+        </video>
+
+        YouTube:
+        <div style="margin-top:3rem;">
+          <iframe style="width:100%;aspect-ratio:16/9;border-radius:16px;border:none;"
+            src="https://www.youtube.com/embed/YOUR_ID" allowfullscreen></iframe>
+        </div>
+      -->
+      <div class="video-ph">
+        <div class="play-btn">&#9654;</div>
+        <span class="video-caption">Insert demo video</span>
+        <span style="font-size:0.65rem;color:var(--muted);font-weight:400;">Replace with &lt;video&gt; or YouTube &lt;iframe&gt;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <section id="screenshots">
+    <div class="wrap">
+      <div style="text-align:center;">
+        <p class="tag">Screenshots</p>
+        <h2 class="section-title">Every screen, <span>built right.</span></h2>
+        <p class="section-sub" style="margin-bottom:0;">Clean, fast, and intuitive from the first tap.</p>
+      </div>
+      <div class="shots-grid">
+        <!-- Replace each block with: <img src="screen-N.png" alt="..." style="width:100%;border-radius:20px;"> -->
+        <div class="shot-ph"><span>+ Screen 1</span></div>
+        <div class="shot-ph"><span>+ Screen 2</span></div>
+        <div class="shot-ph"><span>+ Screen 3</span></div>
+        <div class="shot-ph"><span>+ Screen 4</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD CTA -->
+  <section id="download">
+    <div class="wrap">
+      <h2 class="download-title">Start your<br><span>streak today.</span></h2>
+      <p class="download-sub">Free to download. Log your first session in under a minute.</p>
+      <div class="download-btns">
+        <a href="#" class="btn btn-primary">
+          <svg width="17" height="17" fill="none" viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.37.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.39-1.32 2.76-2.54 3.99zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" fill="currentColor"/></svg>
+          App Store
+        </a>
+        <a href="#" class="btn btn-secondary">
+          <svg width="17" height="17" fill="none" viewBox="0 0 24 24"><path d="M3.18 23.76c.28.15.6.16.9 0l12.77-7.33-2.88-2.89L3.18 23.76zm16.4-9.47L16.73 12l2.85-2.29-13.37-7.68c-.3-.17-.64-.17-.93-.02l10.84 10.84-3.77 3.77.09.08 3.14-2.11zM2.14.69C2.05.93 2 1.2 2 1.5v21c0 .3.05.57.14.81L13.8 12 2.14.69zM19.58 9.93L16.72 12l2.86 2.07 3.21-1.84c.92-.53.92-1.39 0-1.92l-3.21-1.38z" fill="currentColor"/></svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">gymmit.</div>
+          <div class="footer-tagline">Made by <a href="https://nonch.uk">nonch. development</a></div>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>App</h4>
+            <ul>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#showcase">Deep Dive</a></li>
+              <li><a href="#screenshots">Screenshots</a></li>
+              <li><a href="#download">Download</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="gymmit-privacy-policy.html" class="hl">Privacy Policy</a></li>
+              <li><a href="gymmit-terms-of-service.html" class="hl">Terms of Service</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="mailto:gymmit@nonch.uk">gymmit@nonch.uk</a></li>
+              <li><a href="https://nonch.uk">nonch.uk</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 nonch. development. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="gymmit-privacy-policy.html">Privacy Policy</a>
+          <a href="gymmit-terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
