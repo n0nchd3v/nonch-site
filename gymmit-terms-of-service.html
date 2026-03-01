@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — gymmit.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue: #0066FF;
+      --blue-light: #3385FF;
+      --blue-dim: rgba(0, 102, 255, 0.08);
+      --blue-border: rgba(0, 102, 255, 0.25);
+      --bg: #000000;
+      --surface: #0a0a0a;
+      --surface2: #111111;
+      --surface3: #1a1a1a;
+      --border: rgba(255,255,255,0.07);
+      --text: #e8e8e8;
+      --muted: #5a5a5a;
+      --white: #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-left { display: flex; align-items: center; gap: 1.5rem; }
+
+    .nav-brand {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-back {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-left: 1px solid var(--border);
+      padding-left: 1.5rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    .nav-pill {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--blue);
+      background: var(--blue-dim);
+      border: 1px solid var(--blue-border);
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* WRAPPER */
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px 100px;
+    }
+
+    /* HEADER */
+    header {
+      padding: 7rem 0 3.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3.5rem;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .brand-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    .brand-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: -0.3px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -2px;
+      line-height: 1.08;
+      margin-bottom: 1.2rem;
+    }
+
+    h1 span { color: var(--blue); }
+
+    .meta {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.2rem;
+    }
+
+    .meta-item {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .meta-item strong { color: var(--text); font-weight: 600; }
+
+    /* CALLOUT */
+    .callout {
+      background: var(--blue-dim);
+      border: 1px solid var(--blue-border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .callout p {
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .callout strong { color: var(--blue); font-weight: 600; }
+
+    .callout a { color: var(--blue); font-weight: 600; text-decoration: none; }
+    .callout a:hover { text-decoration: underline; }
+
+    /* TOC */
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .toc-title {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px 1.5rem;
+    }
+
+    @media (max-width: 500px) { .toc ol { grid-template-columns: 1fr; } }
+
+    .toc ol li { counter-increment: toc; }
+
+    .toc ol li a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 400;
+      transition: color 0.2s;
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .toc ol li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--blue);
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    .toc ol li a:hover { color: var(--white); }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 6rem;
+    }
+
+    .section-num {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      opacity: 0.7;
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      margin-bottom: 1.2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 1.8rem 0 0.6rem;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin-bottom: 0.9rem;
+    }
+
+    p strong { color: var(--text); font-weight: 600; }
+
+    ul, ol.content-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 0.9rem;
+    }
+
+    ul li, ol.content-list li {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 400;
+      padding: 4px 0 4px 1.3rem;
+      position: relative;
+      line-height: 1.65;
+    }
+
+    ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.65em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue);
+      opacity: 0.6;
+    }
+
+    ol.content-list { counter-reset: cl; }
+    ol.content-list li { counter-increment: cl; }
+    ol.content-list li::before {
+      content: counter(cl) '.';
+      position: absolute;
+      left: 0;
+      color: var(--blue);
+      font-weight: 600;
+      font-size: 0.78rem;
+      opacity: 0.8;
+    }
+
+    li strong { color: var(--text); font-weight: 600; }
+
+    /* WARNING */
+    .warning {
+      background: var(--surface2);
+      border-left: 2px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.2rem;
+      margin: 1.2rem 0;
+    }
+
+    .warning p { margin: 0; font-size: 0.85rem; }
+
+    /* CONTACT CARD */
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem 2rem;
+    }
+
+    .contact-card p { margin: 0 0 0.5rem; }
+    .contact-card p:last-child { margin: 0; }
+
+    .contact-card a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact-card a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem 0 0;
+      margin-top: 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+
+    footer a {
+      font-size: 0.75rem;
+      color: var(--blue);
+      text-decoration: none;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-back { display: none; }
+      .wrapper { padding: 0 16px 80px; }
+      header { padding: 6rem 0 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <a class="nav-brand" href="gymmit.html">gymmit.</a>
+      <a class="nav-back" href="https://nonch.uk">&larr; nonch.uk</a>
+    </div>
+    <span class="nav-pill">Legal</span>
+  </nav>
+
+  <div class="wrapper">
+
+    <header>
+      <div class="brand-row">
+        <div class="brand-dot"></div>
+        <span class="brand-name">gymmit.</span>
+      </div>
+      <h1>Terms of <span>Service</span></h1>
+      <div class="meta">
+        <span class="meta-item">Effective: <strong>25 February 2026</strong></span>
+        <span class="meta-item">Version: <strong>1.0</strong></span>
+        <span class="meta-item">Governed by: <strong>nonch. development</strong></span>
+      </div>
+    </header>
+
+    <div class="callout">
+      <p><strong>By creating an account on gymmit., you confirm that you have read, understood, and agree to these Terms of Service.</strong> If you do not agree, please do not create an account or use the app. You must also agree to the <a href="gymmit-privacy-policy.html">Privacy Policy</a>, which is incorporated into these Terms by reference.</p>
+    </div>
+
+    <div class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#s1">Eligibility &amp; Accounts</a></li>
+        <li><a href="#s2">Acceptable Use</a></li>
+        <li><a href="#s3">User Content</a></li>
+        <li><a href="#s4">Media Uploads</a></li>
+        <li><a href="#s5">Social Features</a></li>
+        <li><a href="#s6">Intellectual Property</a></li>
+        <li><a href="#s7">Health &amp; Fitness Disclaimer</a></li>
+        <li><a href="#s8">Content Moderation</a></li>
+        <li><a href="#s9">Account Termination</a></li>
+        <li><a href="#s10">Disclaimers &amp; Liability</a></li>
+        <li><a href="#s11">Changes to Terms</a></li>
+        <li><a href="#s12">Contact</a></li>
+      </ol>
+    </div>
+
+    <section id="s1">
+      <span class="section-num">01</span>
+      <h2>Eligibility &amp; Accounts</h2>
+      <h3>Age Requirements</h3>
+      <p>Users must be at least <strong>13 years old</strong> to use gymmit. Users under 18 must have obtained parental or guardian consent. By creating an account, the user represents that they meet this requirement.</p>
+      <h3>Account Registration</h3>
+      <p>Upon registration, users agree to:</p>
+      <ul>
+        <li>Provide accurate, current, and complete information</li>
+        <li>Maintain and promptly update account information</li>
+        <li>Keep passwords secure and confidential</li>
+        <li>Notify nonch. development immediately of any unauthorised account use</li>
+        <li>Not share account credentials with any third party</li>
+      </ul>
+      <h3>One Account Per Person</h3>
+      <p>Only one personal account may be maintained per individual. Creating multiple accounts to evade bans or circumvent policies is strictly prohibited and may result in permanent removal from the platform.</p>
+      <h3>Account Responsibility</h3>
+      <p>Users are solely responsible for all activity that occurs under their account. nonch. development will not be liable for any loss resulting from unauthorised use of an account.</p>
+    </section>
+
+    <section id="s2">
+      <span class="section-num">02</span>
+      <h2>Acceptable Use</h2>
+      <p>By using gymmit., users agree not to:</p>
+      <ul>
+        <li>Post, upload, or share any content that is unlawful, harmful, harassing, defamatory, obscene, or otherwise objectionable</li>
+        <li>Impersonate any person or entity, or falsely misrepresent themselves</li>
+        <li>Harass, bully, threaten, stalk, or intimidate other users</li>
+        <li>Spam or send unsolicited promotional messages to other users</li>
+        <li>Use gymmit. for commercial purposes without written consent from nonch. development</li>
+        <li>Scrape, harvest, or collect user data using automated means</li>
+        <li>Attempt to gain unauthorised access to systems or another user's account</li>
+        <li>Introduce malware, viruses, or any malicious code</li>
+        <li>Use gymmit. in any way that violates applicable laws or regulations</li>
+        <li>Promote or glorify eating disorders, self-harm, or dangerous fitness practices</li>
+        <li>Post content that promotes discrimination based on race, gender, religion, nationality, disability, sexual orientation, or age</li>
+      </ul>
+      <p>nonch. development reserves the right to remove any content and suspend or terminate any account that violates these rules, at its sole discretion.</p>
+    </section>
+
+    <section id="s3">
+      <span class="section-num">03</span>
+      <h2>User Content</h2>
+      <h3>Ownership &amp; Licence</h3>
+      <p>Users retain ownership of the content they create and post on gymmit. ("User Content"). By submitting User Content, the user grants nonch. development a <strong>worldwide, non-exclusive, royalty-free licence</strong> to use, reproduce, modify, adapt, publish, and display that content for the purpose of operating and improving the gymmit. service.</p>
+      <h3>Content Standards</h3>
+      <p>All User Content must comply with these Terms. Users are solely responsible for their User Content and the consequences of posting it. nonch. development does not endorse any User Content or any opinion expressed therein.</p>
+      <h3>Prohibited Content</h3>
+      <ul>
+        <li><strong>Sexual or explicit content</strong> of any kind</li>
+        <li><strong>Content involving minors</strong> in any inappropriate context</li>
+        <li><strong>Graphic violence or gore</strong></li>
+        <li><strong>Self-harm or suicide promotion</strong></li>
+        <li><strong>Hate speech</strong> targeting any individual or group</li>
+        <li><strong>Misinformation</strong> about health, fitness, or nutrition that could endanger users</li>
+        <li><strong>Spam or misleading content</strong></li>
+        <li><strong>Copyright-infringing material</strong></li>
+      </ul>
+      <h3>Content Removal</h3>
+      <p>nonch. development reserves the right to remove any User Content at any time without notice if it violates these Terms or is otherwise objectionable.</p>
+    </section>
+
+    <section id="s4">
+      <span class="section-num">04</span>
+      <h2>Media Uploads</h2>
+      <p>gymmit. allows users to upload images and videos as part of posts, exercise demonstrations, workout thumbnails, profile avatars, and cover photos.</p>
+      <h3>Ownership of Uploaded Media</h3>
+      <div class="warning">
+        <p><strong>Important:</strong> Only media that the user has personally created, owns, or has explicit permission to use may be uploaded. Uploading content belonging to someone else — including photos, videos, music, artwork, or any copyrighted material — without proper authorisation is strictly prohibited.</p>
+      </div>
+      <ul>
+        <li>Do not upload photos or videos of other people without their clear consent</li>
+        <li>Do not upload copyrighted fitness videos or instructional content you did not create</li>
+        <li>Do not upload screenshots or recordings of other users' private content</li>
+        <li>Do not upload media taken in private settings without all participants' consent</li>
+        <li>Do not upload media that includes identifiable personal or financial information about others</li>
+      </ul>
+      <h3>Automated Moderation</h3>
+      <p>All media uploaded to gymmit. is processed through an automated content moderation system. Uploads containing explicit, violent, self-harm, or otherwise prohibited content will be <strong>automatically rejected</strong>. Repeated violations may result in account suspension or termination.</p>
+      <h3>Media Licence</h3>
+      <p>When media is uploaded to gymmit., the user grants nonch. development a licence to store, process, display, and distribute that media within the platform for service operation purposes. This licence ends when the content or account is deleted, subject to technical retention periods required for backup and system integrity.</p>
+      <h3>Storage &amp; Retention</h3>
+      <p>nonch. development reserves the right to impose storage limits on uploaded media and may delete media associated with inactive or terminated accounts after a reasonable notice period.</p>
+    </section>
+
+    <section id="s5">
+      <span class="section-num">05</span>
+      <h2>Social Features</h2>
+      <p>gymmit. includes social features such as a public feed, posts, likes, comments, shares, follow requests, and user profiles.</p>
+      <h3>Posts &amp; Sharing</h3>
+      <ul>
+        <li>Users may share workout sessions, nutrition data, streaks, and photos with the community</li>
+        <li>Posts marked "Public" are visible to all gymmit. users; posts marked "Private" are visible only to approved followers</li>
+        <li>Users are responsible for the privacy of any data they choose to share publicly</li>
+      </ul>
+      <h3>Interactions</h3>
+      <ul>
+        <li>Comments must be respectful and constructive; abusive, threatening, or harassing comments will be removed</li>
+        <li>Comments and messages must not be used to spam, advertise, or solicit other users</li>
+        <li>Sharing another user's content outside the app without their consent is strongly discouraged</li>
+      </ul>
+      <h3>Follow System</h3>
+      <ul>
+        <li>Users may accept or decline follow requests at their sole discretion</li>
+        <li>Follow/unfollow behaviour must not be used to harass, pressure, or manipulate other users</li>
+        <li>Accounts engaging in follow-farming or bot-assisted following may be suspended</li>
+      </ul>
+      <h3>Blocking</h3>
+      <p>gymmit. provides the ability to block other users. Blocked users cannot view profiles, interact with posts, or send follow requests.</p>
+      <h3>Verified Accounts</h3>
+      <p>Certain accounts may be marked as verified. Users may not misrepresent themselves as verified or attempt to obtain verification through deceptive means.</p>
+    </section>
+
+    <section id="s6">
+      <span class="section-num">06</span>
+      <h2>Intellectual Property</h2>
+      <h3>nonch. development's Property</h3>
+      <p>The gymmit. app, its design, code, branding, logos, trademarks, exercise library content, and all associated intellectual property are owned by nonch. development and protected by applicable intellectual property laws. No part may be copied, reproduced, modified, distributed, or used to create derivative works without express written permission.</p>
+      <h3>User Property</h3>
+      <p>Users retain all intellectual property rights in the content they create and post on gymmit., subject to the licence granted in these Terms.</p>
+      <h3>Copyright Infringement</h3>
+      <p>If it is believed that content on gymmit. infringes a copyright, this should be reported via the in-app bug report feature or by direct contact. All reports will be investigated and infringing content removed where appropriate. Repeat infringers will have their accounts terminated.</p>
+    </section>
+
+    <section id="s7">
+      <span class="section-num">07</span>
+      <h2>Health &amp; Fitness Disclaimer</h2>
+      <div class="warning">
+        <p><strong>gymmit. is not a medical service.</strong> The workout tracking, nutrition logging, calorie data, exercise instructions, and fitness content available on gymmit. are provided for general informational and motivational purposes only and do not constitute medical advice, diagnosis, or treatment.</p>
+      </div>
+      <p>Before beginning any exercise programme or making significant changes to diet, a qualified healthcare professional should be consulted — particularly where pre-existing health conditions, injuries, or medical concerns exist.</p>
+      <ul>
+        <li>Nutritional data displayed is sourced from third-party food databases and may not be 100% accurate</li>
+        <li>Exercise instructions and video demonstrations are for guidance only; exercises should always be performed with proper form and within personal limits</li>
+        <li>Streak, points, and gamification features are intended to encourage consistency — they should never be pursued at the expense of rest, recovery, or wellbeing</li>
+        <li>nonch. development is not liable for any injury, illness, or adverse outcome resulting from use of gymmit.'s fitness or nutrition features</li>
+      </ul>
+    </section>
+
+    <section id="s8">
+      <span class="section-num">08</span>
+      <h2>Content Moderation</h2>
+      <p>A combination of automated AI moderation and, where necessary, human review is used to keep gymmit. safe. By using the platform, users acknowledge and agree that:</p>
+      <ul>
+        <li>Uploaded media is automatically scanned for prohibited content including sexual material, graphic violence, and self-harm imagery</li>
+        <li>Content that fails moderation checks will be blocked or removed without prior notice</li>
+        <li>Moderation decisions may be appealed by contacting nonch. development directly</li>
+        <li>Repeated moderation violations will result in progressive account restrictions up to and including permanent termination</li>
+        <li>Illegal content, including child sexual abuse material, will be reported to the appropriate authorities</li>
+      </ul>
+      <h3>Reporting</h3>
+      <p>Users are encouraged to report content or behaviour that violates these Terms via the in-app bug report feature or by contacting the support team. All reports are taken seriously and investigated promptly.</p>
+    </section>
+
+    <section id="s9">
+      <span class="section-num">09</span>
+      <h2>Account Termination</h2>
+      <h3>Termination by the User</h3>
+      <p>Accounts may be deleted at any time from within the app via Settings → Account Management → Delete Account. Upon deletion, personal data will be removed in accordance with the Privacy Policy. Certain data may be retained for legal compliance purposes.</p>
+      <h3>Termination by nonch. development</h3>
+      <p>nonch. development reserves the right to suspend or permanently terminate any account, with or without prior notice, if:</p>
+      <ul>
+        <li>Any provision of these Terms is violated</li>
+        <li>A valid legal order requiring termination is received</li>
+        <li>Continued access is reasonably believed to pose a risk to the community, systems, or third parties</li>
+        <li>The account has been inactive for an extended period</li>
+      </ul>
+      <h3>Effect of Termination</h3>
+      <p>Upon termination, access to gymmit. will cease immediately. Content posted may be removed from public view. Termination does not affect any rights or obligations that arose prior to termination.</p>
+    </section>
+
+    <section id="s10">
+      <span class="section-num">10</span>
+      <h2>Disclaimers &amp; Limitation of Liability</h2>
+      <h3>Service Availability</h3>
+      <p>gymmit. is provided "as is" and "as available." No guarantee is made that the service will be uninterrupted, error-free, or free of harmful components. The service may be modified, suspended, or discontinued at any time without liability.</p>
+      <h3>Limitation of Liability</h3>
+      <p>To the fullest extent permitted by applicable law, nonch. development and its officers, directors, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, goodwill, or other intangible losses, resulting from:</p>
+      <ul>
+        <li>Use of, or inability to use, gymmit.</li>
+        <li>Any content posted by users</li>
+        <li>Any injury or health outcome arising from fitness or nutrition features</li>
+        <li>Unauthorised access to or alteration of user data</li>
+      </ul>
+      <h3>Third-Party Services</h3>
+      <p>gymmit. integrates third-party services including food databases and cloud storage providers. nonch. development is not responsible for the accuracy, availability, or conduct of these services.</p>
+    </section>
+
+    <section id="s11">
+      <span class="section-num">11</span>
+      <h2>Changes to These Terms</h2>
+      <p>These Terms may be updated from time to time. When material changes are made, users will be notified via push notification, in-app alert, or email at least <strong>14 days before the changes take effect</strong>. Continued use of gymmit. after the effective date of updated Terms constitutes acceptance of the changes.</p>
+      <p>If updated Terms are not agreed to, gymmit. must be stopped and the account deleted prior to the effective date.</p>
+    </section>
+
+    <section id="s12">
+      <span class="section-num">12</span>
+      <h2>Contact</h2>
+      <div class="contact-card">
+        <p>For any questions, concerns, or requests regarding these Terms of Service:</p>
+        <br />
+        <p><strong style="color:var(--text);">nonch. development</strong></p>
+        <p>In-app: Settings → Report a Bug</p>
+        <p>Email: <a href="mailto:gymmit@nonch.uk">gymmit@nonch.uk</a></p>
+        <br />
+        <p style="font-size:0.8rem;color:var(--muted);">Please also review the <a href="gymmit-privacy-policy.html">Privacy Policy</a> to understand how personal data is handled.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 nonch. development. All rights reserved.</p>
+      <a href="gymmit-privacy-policy.html">Privacy Policy &rarr;</a>
+    </footer>
+
+  </div>
+</body>
+</html>
