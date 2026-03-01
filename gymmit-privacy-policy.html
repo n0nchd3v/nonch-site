@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — gymmit.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue: #0066FF;
+      --blue-light: #3385FF;
+      --blue-dim: rgba(0, 102, 255, 0.08);
+      --blue-border: rgba(0, 102, 255, 0.25);
+      --bg: #000000;
+      --surface: #0a0a0a;
+      --surface2: #111111;
+      --surface3: #1a1a1a;
+      --border: rgba(255,255,255,0.07);
+      --text: #e8e8e8;
+      --muted: #5a5a5a;
+      --white: #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-left { display: flex; align-items: center; gap: 1.5rem; }
+
+    .nav-brand {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-back {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-left: 1px solid var(--border);
+      padding-left: 1.5rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    .nav-pill {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--blue);
+      background: var(--blue-dim);
+      border: 1px solid var(--blue-border);
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* WRAPPER */
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px 100px;
+    }
+
+    /* HEADER */
+    header {
+      padding: 7rem 0 3.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3.5rem;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .brand-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    .brand-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: -0.3px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -2px;
+      line-height: 1.08;
+      margin-bottom: 1.2rem;
+    }
+
+    h1 span { color: var(--blue); }
+
+    .meta {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.2rem;
+    }
+
+    .meta-item {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .meta-item strong { color: var(--text); font-weight: 600; }
+
+    /* SUMMARY CARDS */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 3.5rem;
+    }
+
+    @media (max-width: 520px) { .summary-grid { grid-template-columns: 1fr; } }
+
+    .summary-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      border-top: 2px solid var(--blue);
+    }
+
+    .summary-card h4 {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .summary-card p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.55;
+      font-weight: 400;
+    }
+
+    /* TOC */
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .toc-title {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px 1.5rem;
+    }
+
+    @media (max-width: 500px) { .toc ol { grid-template-columns: 1fr; } }
+
+    .toc ol li { counter-increment: toc; }
+
+    .toc ol li a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 400;
+      transition: color 0.2s;
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .toc ol li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--blue);
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    .toc ol li a:hover { color: var(--white); }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 6rem;
+    }
+
+    .section-num {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      opacity: 0.7;
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      margin-bottom: 1.2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 1.8rem 0 0.6rem;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin-bottom: 0.9rem;
+    }
+
+    p strong { color: var(--text); font-weight: 600; }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 0.9rem;
+    }
+
+    ul li {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 400;
+      padding: 4px 0 4px 1.3rem;
+      position: relative;
+      line-height: 1.65;
+    }
+
+    ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.65em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue);
+      opacity: 0.6;
+    }
+
+    li strong { color: var(--text); font-weight: 600; }
+
+    /* DATA TABLE */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.2rem 0;
+      font-size: 0.84rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .data-table thead tr { background: var(--surface2); }
+
+    .data-table th {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--blue);
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-table td {
+      padding: 0.7rem 1rem;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      font-weight: 400;
+    }
+
+    .data-table td strong { color: var(--text); font-weight: 600; }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    /* HIGHLIGHT / WARNING */
+    .highlight {
+      background: var(--blue-dim);
+      border: 1px solid var(--blue-border);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin: 1.2rem 0;
+    }
+
+    .highlight p { margin: 0; font-size: 0.86rem; }
+    .highlight strong { color: var(--blue); }
+
+    .warning {
+      background: var(--surface2);
+      border-left: 2px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.2rem;
+      margin: 1.2rem 0;
+    }
+
+    .warning p { margin: 0; font-size: 0.85rem; }
+
+    /* RIGHTS GRID */
+    .rights-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 500px) { .rights-grid { grid-template-columns: 1fr; } }
+
+    .right-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+    }
+
+    .right-item h5 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .right-item p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* CONTACT CARD */
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem 2rem;
+    }
+
+    .contact-card p { margin: 0 0 0.5rem; }
+    .contact-card p:last-child { margin: 0; }
+
+    .contact-card a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact-card a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem 0 0;
+      margin-top: 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+    footer a { font-size: 0.75rem; color: var(--blue); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-back { display: none; }
+      .wrapper { padding: 0 16px 80px; }
+      header { padding: 6rem 0 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <a class="nav-brand" href="gymmit.html">gymmit.</a>
+      <a class="nav-back" href="https://nonch.uk">&larr; nonch.uk</a>
+    </div>
+    <span class="nav-pill">Legal</span>
+  </nav>
+
+  <div class="wrapper">
+
+    <header>
+      <div class="brand-row">
+        <div class="brand-dot"></div>
+        <span class="brand-name">gymmit.</span>
+      </div>
+      <h1>Privacy <span>Policy</span></h1>
+      <div class="meta">
+        <span class="meta-item">Effective: <strong>25 February 2026</strong></span>
+        <span class="meta-item">Version: <strong>1.0</strong></span>
+        <span class="meta-item">Governed by: <strong>nonch. development</strong></span>
+      </div>
+    </header>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <h4>Data is protected</h4>
+        <p>Only what is necessary to run gymmit. is collected. Personal information is never sold to third parties.</p>
+      </div>
+      <div class="summary-card">
+        <h4>Users are in control</h4>
+        <p>Data can be accessed, updated, exported, or permanently deleted at any time from within the app.</p>
+      </div>
+      <div class="summary-card">
+        <h4>Minimal sharing</h4>
+        <p>Data is only shared with trusted service providers necessary to operate the platform — never for advertising.</p>
+      </div>
+      <div class="summary-card">
+        <h4>Fitness data is sensitive</h4>
+        <p>Health metrics, body stats, and nutrition data are treated with extra care and strict access controls.</p>
+      </div>
+    </div>
+
+    <div class="toc">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#p1">Who We Are</a></li>
+        <li><a href="#p2">Data Collected</a></li>
+        <li><a href="#p3">How Data Is Used</a></li>
+        <li><a href="#p4">Data Sharing</a></li>
+        <li><a href="#p5">Media &amp; Uploaded Content</a></li>
+        <li><a href="#p6">Social Features &amp; Visibility</a></li>
+        <li><a href="#p7">Data Retention</a></li>
+        <li><a href="#p8">Your Rights</a></li>
+        <li><a href="#p9">Security</a></li>
+        <li><a href="#p10">Children's Privacy</a></li>
+        <li><a href="#p11">Third-Party Services</a></li>
+        <li><a href="#p12">Changes to This Policy</a></li>
+        <li><a href="#p13">Contact</a></li>
+      </ol>
+    </div>
+
+    <section id="p1">
+      <span class="section-num">01</span>
+      <h2>Who We Are</h2>
+      <p>gymmit. is a fitness and social tracking application developed and operated by <strong>nonch. development</strong>. This Privacy Policy explains how personal information is collected, used, stored, and protected when gymmit. is used, and what rights users hold in relation to that data.</p>
+      <p>By creating an account and using gymmit., the user acknowledges that they have read and understood this Privacy Policy. This policy forms part of the <a href="gymmit-terms-of-service.html" style="color:var(--blue);font-weight:500;">Terms of Service</a>.</p>
+    </section>
+
+    <section id="p2">
+      <span class="section-num">02</span>
+      <h2>Data Collected</h2>
+      <h3>Account &amp; Profile Data</h3>
+      <ul>
+        <li>Email address and password (stored securely, hashed)</li>
+        <li>Username and display name</li>
+        <li>Profile avatar and cover photo (if uploaded)</li>
+        <li>Date of birth (to verify age eligibility)</li>
+        <li>Account verification status</li>
+      </ul>
+      <h3>Onboarding &amp; Fitness Profile</h3>
+      <p>During onboarding, users may optionally provide:</p>
+      <ul>
+        <li>Height, weight, and body measurements</li>
+        <li>Fitness level (beginner / intermediate / advanced / expert)</li>
+        <li>Fitness goals (e.g. weight loss, muscle gain, endurance)</li>
+        <li>Unit preferences (metric / imperial)</li>
+      </ul>
+      <p>This data is used to personalise the experience. It is not required to use the core app.</p>
+      <h3>Workout &amp; Activity Data</h3>
+      <ul>
+        <li>Workouts created, scheduled, and completed</li>
+        <li>Exercises, sets, reps, weights, and session duration</li>
+        <li>Workout history and progress over time</li>
+        <li>Streak data (workout streaks, calorie streaks, post streaks)</li>
+        <li>Points earned and gamification progress</li>
+      </ul>
+      <h3>Nutrition &amp; Food Data</h3>
+      <ul>
+        <li>Daily calorie and macro goals</li>
+        <li>Food entries logged per meal (Breakfast, Lunch, Dinner, Snacks)</li>
+        <li>Saved foods and custom meal templates</li>
+        <li>Nutrition logs by date</li>
+      </ul>
+      <h3>Social &amp; Content Data</h3>
+      <ul>
+        <li>Posts created (text, workout shares, streaks, photo posts)</li>
+        <li>Comments, likes, and shares</li>
+        <li>Follow relationships and friend requests</li>
+        <li>Blocked users</li>
+        <li>Notifications generated by activity</li>
+      </ul>
+      <h3>Uploaded Media</h3>
+      <ul>
+        <li>Photos and videos uploaded for posts, exercise demonstrations, and profile media</li>
+        <li>Thumbnails generated from uploaded videos for moderation purposes</li>
+      </ul>
+      <h3>Technical &amp; Usage Data</h3>
+      <ul>
+        <li>Device type, operating system, and app version</li>
+        <li>Session logs and feature usage patterns (anonymised where possible)</li>
+        <li>Crash reports and error logs submitted via the bug report feature</li>
+        <li>Push notification tokens (only if notifications are enabled)</li>
+      </ul>
+    </section>
+
+    <section id="p3">
+      <span class="section-num">03</span>
+      <h2>How Data Is Used</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Purpose</th>
+            <th>Data Used</th>
+            <th>Legal Basis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Providing the service</strong></td><td>All account, workout, nutrition, and content data</td><td>Contract performance</td></tr>
+          <tr><td><strong>Personalisation</strong></td><td>Fitness profile, goals, history</td><td>Contract / Legitimate interest</td></tr>
+          <tr><td><strong>Social features</strong></td><td>Profile, posts, follows</td><td>Contract performance</td></tr>
+          <tr><td><strong>Content moderation</strong></td><td>Uploaded media (scanned, not retained by moderation provider)</td><td>Legitimate interest / Legal obligation</td></tr>
+          <tr><td><strong>Push notifications</strong></td><td>Notification token, activity triggers</td><td>Consent</td></tr>
+          <tr><td><strong>Bug reports &amp; support</strong></td><td>Error logs, user-submitted descriptions</td><td>Legitimate interest</td></tr>
+          <tr><td><strong>Security &amp; fraud prevention</strong></td><td>Account data, usage patterns</td><td>Legitimate interest / Legal obligation</td></tr>
+          <tr><td><strong>Legal compliance</strong></td><td>Data as required by law</td><td>Legal obligation</td></tr>
+        </tbody>
+      </table>
+      <div class="highlight">
+        <p><strong>Data is not used for advertising purposes.</strong> gymmit. does not display ads and does not share personal data with advertising networks or data brokers.</p>
+      </div>
+    </section>
+
+    <section id="p4">
+      <span class="section-num">04</span>
+      <h2>Data Sharing</h2>
+      <p>Personal data is not sold. Data is shared only in the following limited circumstances:</p>
+      <h3>Service Providers</h3>
+      <p>Trusted third-party providers are used to operate gymmit. These providers only process data on behalf of nonch. development, according to its instructions, and are bound by strict data protection agreements:</p>
+      <ul>
+        <li><strong>Supabase</strong> — Database hosting, authentication, and media storage</li>
+        <li><strong>OpenAI</strong> — AI-powered content moderation of uploaded images (image data is sent for analysis and not retained by OpenAI beyond the API call)</li>
+        <li><strong>FatSecret API</strong> — Food database for nutrition logging</li>
+      </ul>
+      <h3>Legal Requirements</h3>
+      <p>Data may be disclosed if required to do so by applicable law, court order, or governmental authority, or to protect the rights, property, or safety of nonch. development, users, or the public.</p>
+      <h3>Business Transfers</h3>
+      <p>If nonch. development is involved in a merger, acquisition, or sale of assets, user data may be transferred as part of that transaction. Users will be notified via in-app notification or email if this occurs and given the opportunity to delete their account beforehand.</p>
+      <h3>Public Content</h3>
+      <p>Content marked as "Public" (posts, workout shares, username, profile picture) is visible to other gymmit. users. Privacy settings can be changed at any time to switch posts or a profile to private.</p>
+    </section>
+
+    <section id="p5">
+      <span class="section-num">05</span>
+      <h2>Media &amp; Uploaded Content</h2>
+      <h3>Storage</h3>
+      <p>Uploaded media is stored securely in cloud storage provided by Supabase. Access is restricted to authenticated users with the appropriate permissions. Signed, time-limited URLs are used to serve media.</p>
+      <h3>Content Moderation</h3>
+      <p>All uploaded images are passed through an automated AI moderation service (powered by OpenAI) to detect prohibited content. Images are analysed in real time and <strong>not stored by OpenAI</strong> — only the moderation result is retained.</p>
+      <h3>What Is Stored About Media</h3>
+      <ul>
+        <li>The file itself (image or video) in cloud storage</li>
+        <li>The storage path and URL associated with the file</li>
+        <li>Metadata (file type, upload timestamp, associated post or resource ID)</li>
+      </ul>
+      <h3>Deletion</h3>
+      <p>When a post or account is deleted, associated media files are queued for removal. Media may persist in backups for up to 30 days following deletion.</p>
+      <h3>Other People's Media</h3>
+      <div class="warning">
+        <p><strong>Images or videos of other people must not be uploaded without their consent.</strong> If a user appears in content uploaded by another user and wishes to have it removed, contact details are in Section 13.</p>
+      </div>
+    </section>
+
+    <section id="p6">
+      <span class="section-num">06</span>
+      <h2>Social Features &amp; Visibility</h2>
+      <p>How data is visible to others depends on user settings:</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Data</th><th>Default Visibility</th><th>Changeable?</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Username &amp; display name</strong></td><td>Public</td><td>Via profile settings</td></tr>
+          <tr><td><strong>Profile photo</strong></td><td>Public</td><td>Via profile settings</td></tr>
+          <tr><td><strong>Posts</strong></td><td>Public or Private (chosen per post)</td><td>Yes — per post toggle</td></tr>
+          <tr><td><strong>Workout history</strong></td><td>Private (only shown if shared in a post)</td><td>Shared via post creation</td></tr>
+          <tr><td><strong>Weight / body metrics</strong></td><td>Private</td><td>Via settings toggle</td></tr>
+          <tr><td><strong>Calorie data on feed</strong></td><td>Visible to followers (if post is public)</td><td>Via settings toggle</td></tr>
+          <tr><td><strong>Follow list</strong></td><td>Visible to followers</td><td>Limited controls</td></tr>
+          <tr><td><strong>Streak data</strong></td><td>Visible if shared in a streak post</td><td>Via post privacy settings</td></tr>
+        </tbody>
+      </table>
+      <p>Privacy settings can be reviewed and updated at any time via Settings → Privacy.</p>
+    </section>
+
+    <section id="p7">
+      <span class="section-num">07</span>
+      <h2>Data Retention</h2>
+      <p>Data is retained for as long as an account is active or as needed to provide the service:</p>
+      <ul>
+        <li><strong>Account data:</strong> Retained for the lifetime of the account</li>
+        <li><strong>Workout &amp; nutrition logs:</strong> Retained for the lifetime of the account; deleted upon account deletion</li>
+        <li><strong>Posts &amp; media:</strong> Deleted upon post or account deletion, with up to 30 days for removal from backups</li>
+        <li><strong>Crash reports &amp; bug reports:</strong> Retained for up to 12 months</li>
+        <li><strong>Technical logs:</strong> Retained for up to 90 days</li>
+        <li><strong>Legal compliance data:</strong> Retained as required by applicable law</li>
+      </ul>
+      <p>When an account is deleted via Settings → Account Management → Delete Account, the deletion process begins immediately. Anonymised or aggregated data that cannot identify a user may be retained indefinitely.</p>
+    </section>
+
+    <section id="p8">
+      <span class="section-num">08</span>
+      <h2>Your Rights</h2>
+      <p>Depending on location, users may hold the following rights in relation to their personal data:</p>
+      <div class="rights-grid">
+        <div class="right-item">
+          <h5>Access</h5>
+          <p>Request a copy of the personal data held.</p>
+        </div>
+        <div class="right-item">
+          <h5>Rectification</h5>
+          <p>Correct inaccurate data via profile settings.</p>
+        </div>
+        <div class="right-item">
+          <h5>Erasure</h5>
+          <p>Request deletion of personal data.</p>
+        </div>
+        <div class="right-item">
+          <h5>Portability</h5>
+          <p>Request an export of data in a machine-readable format.</p>
+        </div>
+        <div class="right-item">
+          <h5>Restriction</h5>
+          <p>Request limited processing in certain circumstances.</p>
+        </div>
+        <div class="right-item">
+          <h5>Object</h5>
+          <p>Object to processing based on legitimate interests.</p>
+        </div>
+        <div class="right-item">
+          <h5>Withdraw Consent</h5>
+          <p>Withdraw consent for processing relying on consent (e.g. notifications).</p>
+        </div>
+        <div class="right-item">
+          <h5>Complaint</h5>
+          <p>Lodge a complaint with a local data protection authority.</p>
+        </div>
+      </div>
+      <p style="margin-top:1.2rem;">To exercise any of these rights, contact nonch. development using the details in Section 13. Responses will be provided within 30 days.</p>
+      <h3>In-App Controls</h3>
+      <ul>
+        <li><strong>Edit profile data:</strong> Settings → Profile</li>
+        <li><strong>Privacy controls:</strong> Settings → Privacy</li>
+        <li><strong>Notification preferences:</strong> Settings → Notifications</li>
+        <li><strong>Delete account:</strong> Settings → Account Management → Delete Account</li>
+      </ul>
+    </section>
+
+    <section id="p9">
+      <span class="section-num">09</span>
+      <h2>Security</h2>
+      <p>Industry-standard security safeguards are implemented including:</p>
+      <ul>
+        <li>Passwords are hashed using strong, modern cryptographic algorithms — never stored in plain text</li>
+        <li>All data transmitted between device and servers is encrypted using TLS</li>
+        <li>Media files are served via time-limited signed URLs to prevent unauthorised access</li>
+        <li>Row-level security policies restrict data access to the appropriate authenticated users</li>
+        <li>Access to production systems is restricted to authorised personnel only</li>
+      </ul>
+      <div class="warning">
+        <p><strong>No method of transmission or storage is 100% secure.</strong> While every reasonable precaution is taken, absolute security cannot be guaranteed. If an account is suspected to be compromised, the password should be changed immediately and nonch. development contacted.</p>
+      </div>
+      <h3>Data Breach Notification</h3>
+      <p>In the event of a data breach likely to result in risk to user rights and freedoms, users and applicable regulatory authorities will be notified as required by law, without undue delay.</p>
+    </section>
+
+    <section id="p10">
+      <span class="section-num">10</span>
+      <h2>Children's Privacy</h2>
+      <p>gymmit. is not directed at children under the age of 13. Personal information is not knowingly collected from children under 13. If it is believed a child under 13 has created an account without parental consent, contact nonch. development immediately and the account and associated data will be deleted.</p>
+      <p>Users aged 13–17 are considered minors and must have parental or guardian consent to use gymmit. Parents are recommended to review the data their children share on the platform and use the available privacy settings to limit public visibility.</p>
+    </section>
+
+    <section id="p11">
+      <span class="section-num">11</span>
+      <h2>Third-Party Services</h2>
+      <p>gymmit. integrates with the following third-party services, each of which has its own privacy policy:</p>
+      <ul>
+        <li><strong>Supabase</strong> — Database and authentication infrastructure. <a href="https://supabase.com/privacy" style="color:var(--blue);" target="_blank">Privacy Policy ↗</a></li>
+        <li><strong>OpenAI</strong> — Content moderation API (images only, not stored). <a href="https://openai.com/policies/privacy-policy" style="color:var(--blue);" target="_blank">Privacy Policy ↗</a></li>
+        <li><strong>FatSecret</strong> — Food database API for nutrition data. <a href="https://platform.fatsecret.com/api/Default.aspx?screen=pp" style="color:var(--blue);" target="_blank">Privacy Policy ↗</a></li>
+      </ul>
+      <p>gymmit. is not responsible for the privacy practices of these third-party services. Data shared with them is limited to what is strictly necessary for their respective functions.</p>
+    </section>
+
+    <section id="p12">
+      <span class="section-num">12</span>
+      <h2>Changes to This Policy</h2>
+      <p>This Privacy Policy may be updated from time to time to reflect changes in practices, legal requirements, or the services offered. When material changes are made, users will be notified via push notification, in-app alert, or email at least <strong>14 days before the changes take effect</strong>.</p>
+      <p>Continued use of gymmit. after updates become effective constitutes acceptance of the revised policy.</p>
+    </section>
+
+    <section id="p13">
+      <span class="section-num">13</span>
+      <h2>Contact</h2>
+      <div class="contact-card">
+        <p>For any privacy-related questions, data requests, or concerns:</p>
+        <br />
+        <p><strong style="color:var(--text);">nonch. development</strong></p>
+        <p>In-app: Settings → Report a Bug</p>
+        <p>Email: <a href="mailto:gymmit@nonch.uk">gymmit@nonch.uk</a></p>
+        <br />
+        <p style="font-size:0.8rem;color:var(--muted);">Responses to all data rights requests will be provided within <strong style="color:var(--text);">30 days</strong> of receipt. See the <a href="gymmit-terms-of-service.html">Terms of Service</a> for the full conditions of using gymmit.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 nonch. development. All rights reserved.</p>
+      <a href="gymmit-terms-of-service.html">Terms of Service &rarr;</a>
+    </footer>
+
+  </div>
+</body>
+</html>
