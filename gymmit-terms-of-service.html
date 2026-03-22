@@ -45,7 +45,6 @@
       opacity: 0.5;
     }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -95,7 +94,6 @@
       text-transform: uppercase;
     }
 
-    /* WRAPPER */
     .wrapper {
       position: relative;
       z-index: 1;
@@ -104,7 +102,6 @@
       padding: 0 24px 100px;
     }
 
-    /* HEADER */
     header {
       padding: 7rem 0 3.5rem;
       border-bottom: 1px solid var(--border);
@@ -158,7 +155,6 @@
 
     .meta-item strong { color: var(--text); font-weight: 600; }
 
-    /* CALLOUT */
     .callout {
       background: var(--blue-dim);
       border: 1px solid var(--blue-border);
@@ -175,11 +171,9 @@
     }
 
     .callout strong { color: var(--blue); font-weight: 600; }
-
     .callout a { color: var(--blue); font-weight: 600; text-decoration: none; }
     .callout a:hover { text-decoration: underline; }
 
-    /* TOC */
     .toc {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -231,7 +225,6 @@
 
     .toc ol li a:hover { color: var(--white); }
 
-    /* SECTIONS */
     section {
       margin-bottom: 3.5rem;
       scroll-margin-top: 6rem;
@@ -315,7 +308,6 @@
 
     li strong { color: var(--text); font-weight: 600; }
 
-    /* WARNING */
     .warning {
       background: var(--surface2);
       border-left: 2px solid var(--blue);
@@ -326,7 +318,25 @@
 
     .warning p { margin: 0; font-size: 0.85rem; }
 
-    /* CONTACT CARD */
+    /* Subscription info box — slightly warmer tint to stand out */
+    .sub-box {
+      background: var(--surface);
+      border: 1px solid var(--blue-border);
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      margin: 1.4rem 0;
+    }
+
+    .sub-box h4 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    .sub-box p { margin: 0; font-size: 0.86rem; }
+
     .contact-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -336,15 +346,9 @@
 
     .contact-card p { margin: 0 0 0.5rem; }
     .contact-card p:last-child { margin: 0; }
-
-    .contact-card a {
-      color: var(--blue);
-      text-decoration: none;
-      font-weight: 500;
-    }
+    .contact-card a { color: var(--blue); text-decoration: none; font-weight: 500; }
     .contact-card a:hover { text-decoration: underline; }
 
-    /* FOOTER */
     footer {
       position: relative;
       z-index: 1;
@@ -359,12 +363,7 @@
     }
 
     footer p { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
-
-    footer a {
-      font-size: 0.75rem;
-      color: var(--blue);
-      text-decoration: none;
-    }
+    footer a { font-size: 0.75rem; color: var(--blue); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
     @media (max-width: 600px) {
@@ -395,7 +394,7 @@
       <h1>Terms of <span>Service</span></h1>
       <div class="meta">
         <span class="meta-item">Effective: <strong>25 February 2026</strong></span>
-        <span class="meta-item">Version: <strong>1.0</strong></span>
+        <span class="meta-item">Version: <strong>1.1</strong></span>
         <span class="meta-item">Governed by: <strong>nonch. development</strong></span>
       </div>
     </header>
@@ -414,14 +413,16 @@
         <li><a href="#s5">Social Features</a></li>
         <li><a href="#s6">Intellectual Property</a></li>
         <li><a href="#s7">Health &amp; Fitness Disclaimer</a></li>
-        <li><a href="#s8">Content Moderation</a></li>
-        <li><a href="#s9">Account Termination</a></li>
-        <li><a href="#s10">Disclaimers &amp; Liability</a></li>
-        <li><a href="#s11">Changes to Terms</a></li>
-        <li><a href="#s12">Contact</a></li>
+        <li><a href="#s8">Subscriptions &amp; In-App Purchases</a></li>
+        <li><a href="#s9">Content Moderation</a></li>
+        <li><a href="#s10">Account Termination</a></li>
+        <li><a href="#s11">Disclaimers &amp; Liability</a></li>
+        <li><a href="#s12">Changes to Terms</a></li>
+        <li><a href="#s13">Contact</a></li>
       </ol>
     </div>
 
+    <!-- ─── 01 ─────────────────────────────────────────────────────────── -->
     <section id="s1">
       <span class="section-num">01</span>
       <h2>Eligibility &amp; Accounts</h2>
@@ -442,6 +443,7 @@
       <p>Users are solely responsible for all activity that occurs under their account. nonch. development will not be liable for any loss resulting from unauthorised use of an account.</p>
     </section>
 
+    <!-- ─── 02 ─────────────────────────────────────────────────────────── -->
     <section id="s2">
       <span class="section-num">02</span>
       <h2>Acceptable Use</h2>
@@ -462,6 +464,7 @@
       <p>nonch. development reserves the right to remove any content and suspend or terminate any account that violates these rules, at its sole discretion.</p>
     </section>
 
+    <!-- ─── 03 ─────────────────────────────────────────────────────────── -->
     <section id="s3">
       <span class="section-num">03</span>
       <h2>User Content</h2>
@@ -484,6 +487,7 @@
       <p>nonch. development reserves the right to remove any User Content at any time without notice if it violates these Terms or is otherwise objectionable.</p>
     </section>
 
+    <!-- ─── 04 ─────────────────────────────────────────────────────────── -->
     <section id="s4">
       <span class="section-num">04</span>
       <h2>Media Uploads</h2>
@@ -507,6 +511,7 @@
       <p>nonch. development reserves the right to impose storage limits on uploaded media and may delete media associated with inactive or terminated accounts after a reasonable notice period.</p>
     </section>
 
+    <!-- ─── 05 ─────────────────────────────────────────────────────────── -->
     <section id="s5">
       <span class="section-num">05</span>
       <h2>Social Features</h2>
@@ -535,6 +540,7 @@
       <p>Certain accounts may be marked as verified. Users may not misrepresent themselves as verified or attempt to obtain verification through deceptive means.</p>
     </section>
 
+    <!-- ─── 06 ─────────────────────────────────────────────────────────── -->
     <section id="s6">
       <span class="section-num">06</span>
       <h2>Intellectual Property</h2>
@@ -546,6 +552,7 @@
       <p>If it is believed that content on gymmit. infringes a copyright, this should be reported via the in-app bug report feature or by direct contact. All reports will be investigated and infringing content removed where appropriate. Repeat infringers will have their accounts terminated.</p>
     </section>
 
+    <!-- ─── 07 ─────────────────────────────────────────────────────────── -->
     <section id="s7">
       <span class="section-num">07</span>
       <h2>Health &amp; Fitness Disclaimer</h2>
@@ -561,8 +568,51 @@
       </ul>
     </section>
 
+    <!-- ─── 08 — NEW SUBSCRIPTIONS SECTION ───────────────────────────── -->
     <section id="s8">
       <span class="section-num">08</span>
+      <h2>Subscriptions &amp; In-App Purchases</h2>
+      <p>gymmit. offers an optional paid subscription (<strong>Gymmit Pro</strong>) that unlocks premium analytics features. All purchases are processed by Apple through the App Store and are subject to Apple's terms and conditions in addition to these Terms.</p>
+
+      <h3>Billing &amp; Payment</h3>
+      <div class="sub-box">
+        <h4>Apple ID Billing</h4>
+        <p>Payment will be charged to your Apple ID at the time of purchase confirmation. You must have a valid payment method associated with your Apple ID to purchase a subscription.</p>
+      </div>
+
+      <h3>Auto-Renewal</h3>
+      <div class="sub-box">
+        <h4>Automatic Renewal Notice</h4>
+        <p>Subscriptions automatically renew unless auto-renewal is turned off at least <strong>24 hours before the end of the current billing period</strong>. Your Apple ID account will be charged for renewal within 24 hours prior to the end of the current period at the same price as the original purchase.</p>
+      </div>
+
+      <h3>Managing &amp; Cancelling</h3>
+      <p>Subscriptions can be managed or cancelled at any time via your device's account settings:</p>
+      <ul>
+        <li>On iPhone or iPad: <strong>Settings → [your name] → Subscriptions</strong></li>
+        <li>Alternatively: open the App Store → tap your profile icon → Subscriptions</li>
+      </ul>
+      <p>Cancelling stops future renewals. Access to Gymmit Pro features continues until the end of the current paid billing period. <strong>Deleting the gymmit. app does not cancel a subscription</strong> — you must cancel through your Apple ID account settings as described above.</p>
+
+      <h3>Free Trials</h3>
+      <p>Where a free trial is offered, it will begin immediately upon confirmation. Any unused portion of a free trial is forfeited if a paid subscription is purchased before the trial ends. After the trial period expires, the subscription automatically renews at the stated price unless cancelled at least 24 hours before the trial ends.</p>
+
+      <h3>Restoring Purchases</h3>
+      <p>If Gymmit Pro features are not appearing after a valid purchase — for example, after reinstalling the app or switching devices — use the <strong>"Restore purchases"</strong> option on the paywall or subscription screen. This reactivates entitlements linked to your Apple ID at no additional charge. Restore only works with the same Apple ID used for the original purchase.</p>
+
+      <h3>Refunds</h3>
+      <p>All purchases are subject to Apple's refund policy. Refund requests must be submitted directly to Apple at <a href="https://reportaproblem.apple.com" target="_blank" style="color:var(--blue);font-weight:500;">reportaproblem.apple.com</a>. nonch. development does not process refunds directly and has no control over Apple's refund decisions.</p>
+
+      <h3>Price Changes</h3>
+      <p>If subscription pricing changes, Apple will notify you in advance and ask you to approve the new price before your next renewal. Continued use of gymmit. after approving the new price constitutes acceptance of the updated pricing.</p>
+
+      <h3>Subscription Tiers</h3>
+      <p>Current subscription options, pricing, and billing periods are displayed on the in-app paywall screen before purchase. gymmit. reserves the right to introduce, modify, or discontinue subscription tiers at any time, subject to applicable notice requirements.</p>
+    </section>
+
+    <!-- ─── 09 ─────────────────────────────────────────────────────────── -->
+    <section id="s9">
+      <span class="section-num">09</span>
       <h2>Content Moderation</h2>
       <p>A combination of automated AI moderation and, where necessary, human review is used to keep gymmit. safe. By using the platform, users acknowledge and agree that:</p>
       <ul>
@@ -576,11 +626,12 @@
       <p>Users are encouraged to report content or behaviour that violates these Terms via the in-app bug report feature or by contacting the support team. All reports are taken seriously and investigated promptly.</p>
     </section>
 
-    <section id="s9">
-      <span class="section-num">09</span>
+    <!-- ─── 10 ─────────────────────────────────────────────────────────── -->
+    <section id="s10">
+      <span class="section-num">10</span>
       <h2>Account Termination</h2>
       <h3>Termination by the User</h3>
-      <p>Accounts may be deleted at any time from within the app via Settings → Account Management → Delete Account. Upon deletion, personal data will be removed in accordance with the Privacy Policy. Certain data may be retained for legal compliance purposes.</p>
+      <p>Accounts may be deleted at any time from within the app via Settings → Account Management → Delete Account. Upon deletion, personal data will be removed in accordance with the Privacy Policy. Certain data may be retained for legal compliance purposes. <strong>Deleting an account does not automatically cancel an active subscription</strong> — this must be done separately through Apple ID account settings before deletion.</p>
       <h3>Termination by nonch. development</h3>
       <p>nonch. development reserves the right to suspend or permanently terminate any account, with or without prior notice, if:</p>
       <ul>
@@ -590,11 +641,12 @@
         <li>The account has been inactive for an extended period</li>
       </ul>
       <h3>Effect of Termination</h3>
-      <p>Upon termination, access to gymmit. will cease immediately. Content posted may be removed from public view. Termination does not affect any rights or obligations that arose prior to termination.</p>
+      <p>Upon termination, access to gymmit. will cease immediately. Content posted may be removed from public view. Termination does not affect any rights or obligations that arose prior to termination, nor does it entitle the user to a refund of any subscription fees paid.</p>
     </section>
 
-    <section id="s10">
-      <span class="section-num">10</span>
+    <!-- ─── 11 ─────────────────────────────────────────────────────────── -->
+    <section id="s11">
+      <span class="section-num">11</span>
       <h2>Disclaimers &amp; Limitation of Liability</h2>
       <h3>Service Availability</h3>
       <p>gymmit. is provided "as is" and "as available." No guarantee is made that the service will be uninterrupted, error-free, or free of harmful components. The service may be modified, suspended, or discontinued at any time without liability.</p>
@@ -605,20 +657,23 @@
         <li>Any content posted by users</li>
         <li>Any injury or health outcome arising from fitness or nutrition features</li>
         <li>Unauthorised access to or alteration of user data</li>
+        <li>Issues arising from Apple's payment, billing, or subscription management systems</li>
       </ul>
       <h3>Third-Party Services</h3>
-      <p>gymmit. integrates third-party services including food databases and cloud storage providers. nonch. development is not responsible for the accuracy, availability, or conduct of these services.</p>
+      <p>gymmit. integrates third-party services including food databases, cloud storage providers, and Apple's in-app purchase system. nonch. development is not responsible for the accuracy, availability, or conduct of these services.</p>
     </section>
 
-    <section id="s11">
-      <span class="section-num">11</span>
+    <!-- ─── 12 ─────────────────────────────────────────────────────────── -->
+    <section id="s12">
+      <span class="section-num">12</span>
       <h2>Changes to These Terms</h2>
       <p>These Terms may be updated from time to time. When material changes are made, users will be notified via push notification, in-app alert, or email at least <strong>14 days before the changes take effect</strong>. Continued use of gymmit. after the effective date of updated Terms constitutes acceptance of the changes.</p>
       <p>If updated Terms are not agreed to, gymmit. must be stopped and the account deleted prior to the effective date.</p>
     </section>
 
-    <section id="s12">
-      <span class="section-num">12</span>
+    <!-- ─── 13 ─────────────────────────────────────────────────────────── -->
+    <section id="s13">
+      <span class="section-num">13</span>
       <h2>Contact</h2>
       <div class="contact-card">
         <p>For any questions, concerns, or requests regarding these Terms of Service:</p>
@@ -627,7 +682,7 @@
         <p>In-app: Settings → Report a Bug</p>
         <p>Email: <a href="mailto:gymmit@nonch.uk">gymmit@nonch.uk</a></p>
         <br />
-        <p style="font-size:0.8rem;color:var(--muted);">Please also review the <a href="gymmit-privacy-policy.html">Privacy Policy</a> to understand how personal data is handled.</p>
+        <p style="font-size:0.8rem;color:var(--muted);">For subscription and billing issues, please contact Apple directly at <a href="https://reportaproblem.apple.com" target="_blank">reportaproblem.apple.com</a>. Please also review the <a href="gymmit-privacy-policy.html">Privacy Policy</a> to understand how personal data is handled.</p>
       </div>
     </section>
 
