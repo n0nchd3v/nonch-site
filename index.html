@@ -4,21 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>nonch. — app development</title>
-  <meta name="description" content="nonch. is an independent app development studio. We build apps and websites on contract." />
+  <meta name="description" content="nonch. is an independent app development studio behind gymmit. and other products." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #111111;
-      --bg2: #181818;
-      --border: #2a2a2a;
-      --text: #d4d4d4;
-      --muted: #666;
-      --accent: #e8e8e8;
-      --dot: #3a3a3a;
+      --bg: #080809;
+      --bg2: #0f0f12;
+      --surface: #141418;
+      --border: rgba(255,255,255,0.06);
+      --text: #b0b0be;
+      --muted: #55556a;
+      --accent: #e8e8f0;
+      --dot: #1a1a22;
     }
 
     html { scroll-behavior: smooth; }
@@ -26,7 +27,7 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Nunito', sans-serif;
+      font-family: 'Outfit', sans-serif;
       font-size: 16px;
       line-height: 1.6;
       min-height: 100vh;
@@ -38,8 +39,8 @@
       position: fixed;
       inset: 0;
       background-image: radial-gradient(circle, var(--dot) 1px, transparent 1px);
-      background-size: 32px 32px;
-      opacity: 0.4;
+      background-size: 28px 28px;
+      opacity: 0.5;
       pointer-events: none;
       z-index: 0;
     }
@@ -48,7 +49,7 @@
       content: '';
       position: fixed;
       inset: 0;
-      background: radial-gradient(ellipse at center, transparent 40%, #080808 100%);
+      background: radial-gradient(ellipse at center, transparent 35%, var(--bg) 100%);
       pointer-events: none;
       z-index: 0;
     }
@@ -60,37 +61,33 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.4rem 2.5rem;
+      padding: 1.2rem 2.5rem;
       border-bottom: 1px solid var(--border);
-      background: rgba(17,17,17,0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(8,8,9,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
     .nav-logo {
-      font-size: 1.45rem;
-      font-weight: 600;
+      font-size: 1.4rem;
+      font-weight: 700;
       color: var(--accent);
       letter-spacing: -0.02em;
       text-decoration: none;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
 
     .nav-links a {
       color: var(--muted);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       transition: color 0.2s;
+      font-family: 'JetBrains Mono', monospace;
     }
-
     .nav-links a:hover { color: var(--accent); }
 
     section { position: relative; z-index: 1; }
@@ -106,19 +103,20 @@
     }
 
     .hero-eyebrow {
-      font-size: 0.75rem;
-      font-weight: 700;
+      font-size: 0.65rem;
+      font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 1.8rem;
       opacity: 0;
       animation: fadeUp 0.7s 0.1s forwards;
+      font-family: 'JetBrains Mono', monospace;
     }
 
     .hero-logo {
       font-size: clamp(5rem, 15vw, 10rem);
-      font-weight: 600;
+      font-weight: 800;
       color: var(--accent);
       letter-spacing: -0.04em;
       line-height: 1;
@@ -128,7 +126,7 @@
     }
 
     .hero-sub {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
       color: var(--muted);
       max-width: 500px;
       font-weight: 400;
@@ -148,36 +146,35 @@
 
     .btn {
       display: inline-block;
-      padding: 0.75rem 1.8rem;
+      padding: 0.72rem 1.6rem;
       border-radius: 6px;
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.9rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
       font-weight: 700;
       text-decoration: none;
-      letter-spacing: 0.02em;
-      transition: all 0.2s;
+      transition: all 0.25s;
       cursor: pointer;
     }
-
     .btn-primary { background: var(--accent); color: #111; border: 1px solid var(--accent); }
-    .btn-primary:hover { background: #fff; border-color: #fff; }
+    .btn-primary:hover { background: #fff; border-color: #fff; transform: translateY(-1px); }
     .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
-    .btn-ghost:hover { border-color: #555; color: var(--accent); }
+    .btn-ghost:hover { border-color: #555; color: var(--accent); transform: translateY(-1px); }
 
     .section-inner { max-width: 900px; margin: 0 auto; padding: 6rem 2rem; }
 
     .section-label {
-      font-size: 0.7rem;
-      font-weight: 700;
+      font-size: 0.65rem;
+      font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 1rem;
+      font-family: 'JetBrains Mono', monospace;
     }
 
     .section-heading {
       font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 600;
+      font-weight: 800;
       color: var(--accent);
       letter-spacing: -0.03em;
       line-height: 1.15;
@@ -186,7 +183,7 @@
 
     .section-body {
       color: var(--muted);
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       max-width: 600px;
       line-height: 1.75;
     }
@@ -209,8 +206,12 @@
       margin-top: 3rem;
     }
 
-    .card { background: var(--bg2); padding: 2rem; transition: background 0.2s; }
-    .card:hover { background: #1f1f1f; }
+    .card {
+      background: var(--surface);
+      padding: 2rem;
+      transition: background 0.2s;
+    }
+    .card:hover { background: #1a1a20; }
 
     .card-title {
       font-size: 1.05rem;
@@ -218,9 +219,9 @@
       color: var(--accent);
       margin-bottom: 0.6rem;
     }
-
     .card-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
 
+    /* App list */
     .app-list {
       margin-top: 2.5rem;
       display: flex;
@@ -232,35 +233,60 @@
     }
 
     .app-item {
-      background: var(--bg2);
+      background: var(--surface);
       padding: 1.8rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
       transition: background 0.2s;
+      text-decoration: none;
     }
+    .app-item:hover { background: #1a1a20; }
 
-    .app-item:hover { background: #1f1f1f; }
-
-    .app-name { font-size: 1.3rem; font-weight: 600; color: var(--accent); letter-spacing: -0.02em; }
-    .app-tagline { font-size: 0.88rem; color: var(--muted); margin-top: 0.2rem; }
+    .app-name { font-size: 1.3rem; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
+    .app-tagline { font-size: 0.86rem; color: var(--muted); margin-top: 0.2rem; }
 
     .app-badge {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       padding: 0.3rem 0.8rem;
-      border-radius: 20px;
+      border-radius: 100px;
       border: 1px solid var(--border);
       color: var(--muted);
       white-space: nowrap;
+      font-family: 'JetBrains Mono', monospace;
     }
+    .app-badge.live { color: #4ade80; border-color: rgba(74,222,128,0.25); background: rgba(74,222,128,0.06); }
 
+    /* Status banner */
+    .status-banner {
+      margin-top: 2.5rem;
+      background: var(--surface);
+      border: 1px solid rgba(255,184,0,0.15);
+      border-radius: 10px;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #FFB800;
+      flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(255,184,0,0.4);
+    }
+    .status-text { font-size: 0.88rem; color: var(--text); }
+    .status-text strong { color: var(--accent); }
+
+    /* Contact box */
     .contact-box {
       margin-top: 2.5rem;
-      background: var(--bg2);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 2.5rem;
@@ -270,11 +296,10 @@
       gap: 2rem;
       flex-wrap: wrap;
     }
-
-    .contact-text { font-size: 1rem; color: var(--muted); max-width: 400px; }
+    .contact-text { font-size: 0.95rem; color: var(--muted); max-width: 420px; line-height: 1.7; }
 
     .contact-email {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--accent);
       text-decoration: none;
@@ -282,7 +307,6 @@
       padding-bottom: 2px;
       transition: border-color 0.2s;
     }
-
     .contact-email:hover { border-color: var(--accent); }
 
     footer {
@@ -297,8 +321,15 @@
       gap: 1rem;
     }
 
-    .footer-logo { font-size: 1rem; font-weight: 600; color: var(--accent); }
-    .footer-copy { font-size: 0.8rem; color: var(--muted); }
+    .footer-logo { font-size: 1rem; font-weight: 700; color: var(--accent); }
+    .footer-copy { font-size: 0.78rem; color: var(--muted); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
@@ -306,7 +337,7 @@
     }
 
     @media (max-width: 600px) {
-      nav { padding: 1.2rem 1.4rem; }
+      nav { padding: 1rem 1.4rem; }
       .nav-links { gap: 1.2rem; }
       footer { flex-direction: column; align-items: flex-start; }
       .contact-box { flex-direction: column; }
@@ -327,9 +358,9 @@
   <section id="hero">
     <p class="hero-eyebrow">Independent App &amp; Web Development</p>
     <h1 class="hero-logo">nonch.</h1>
-    <p class="hero-sub">nonch. develops apps and websites people actually want to use — on contract, and on its own terms.</p>
+    <p class="hero-sub">Building apps and websites that people actually want to use — on its own terms.</p>
     <div class="hero-cta">
-      <a href="#services" class="btn btn-primary">What we do</a>
+      <a href="#apps" class="btn btn-primary">See our work</a>
       <a href="#contact" class="btn btn-ghost">Get in touch</a>
     </div>
   </section>
@@ -337,24 +368,29 @@
   <hr class="divider" />
 
   <section id="services">
-    <div class="section-inner">
+    <div class="section-inner reveal">
       <p class="section-label">Services</p>
-      <h2 class="section-heading">Built on contract. Done properly.</h2>
-      <p class="section-body">nonch. takes on app and website projects under contract — fixed scope, clear deliverables, no ambiguity. Clients know exactly what is being delivered and when.</p>
+      <h2 class="section-heading">What nonch. does.</h2>
+      <p class="section-body">nonch. builds apps and websites — scoped properly, built well, and delivered on time. Fixed scope, clear deliverables, no ambiguity.</p>
 
       <div class="cards">
         <div class="card">
           <div class="card-title">App Development</div>
-          <div class="card-desc">iOS, Android, or both. nonch. scopes, designs, and builds apps end to end — clean code, no bloat, submitted to the App Store.</div>
+          <div class="card-desc">iOS, Android, or both. nonch. scopes, designs, and builds apps end to end — clean code, no bloat, submitted to the stores.</div>
         </div>
         <div class="card">
-          <div class="card-title">Websites on Contract</div>
-          <div class="card-desc">nonch. designs and builds websites under contract. Landing pages, product sites, full web apps — fixed scope, fixed price, delivered on time.</div>
+          <div class="card-title">Web Development</div>
+          <div class="card-desc">Landing pages, product sites, full web apps — designed and built under contract. Fixed scope, fixed price, delivered on time.</div>
         </div>
         <div class="card">
           <div class="card-title">Ongoing Support</div>
-          <div class="card-desc">Updates, maintenance, and iterative improvements after launch. nonch. remains involved so things keep working as they should.</div>
+          <div class="card-desc">Updates, maintenance, and iterative improvements after launch. nonch. stays involved so things keep working as they should.</div>
         </div>
+      </div>
+
+      <div class="status-banner">
+        <span class="status-dot"></span>
+        <span class="status-text"><strong>Not currently accepting contracts.</strong> For enquiries, reach out by email and we'll get back to you.</span>
       </div>
     </div>
   </section>
@@ -362,20 +398,19 @@
   <hr class="divider" />
 
   <section id="apps">
-    <div class="section-inner">
+    <div class="section-inner reveal">
       <p class="section-label">Studio Apps</p>
       <h2 class="section-heading">Things nonch. has shipped.</h2>
-      <p class="section-body">Alongside contract work, nonch. develops products of its own — tools the studio would use itself.</p>
+      <p class="section-body">Alongside client work, nonch. develops its own products — tools the studio would use itself.</p>
 
       <div class="app-list">
-       <a href="gymmit.html" style="text-decoration:none;">
-  <div class="app-item">
-    <div>
-      <div class="app-name">gymmit.</div>
-      <div class="app-tagline">Your fitness, tracked. Workouts made simple.</div>
-    </div>
-  </div>
-</a>
+        <a href="gymmit.html" class="app-item">
+          <div>
+            <div class="app-name">gymmit.</div>
+            <div class="app-tagline">Track your gym, build your streak, compete with everyone.</div>
+          </div>
+          <span class="app-badge live">Live on iOS</span>
+        </a>
       </div>
     </div>
   </section>
@@ -383,17 +418,29 @@
   <hr class="divider" />
 
   <section id="contact">
-    <div class="section-inner">
+    <div class="section-inner reveal">
       <p class="section-label">Contact</p>
-      <h2 class="section-heading">Start a project.</h2>
-      <p class="section-body">Those with a project in mind or an idea to discuss are encouraged to get in touch. nonch. responds promptly to all enquiries.</p>
+      <h2 class="section-heading">Questions or enquiries.</h2>
+      <p class="section-body">nonch. is not currently taking on contract work, but is happy to answer questions or discuss future projects. Drop an email and we'll respond.</p>
 
       <div class="contact-box">
-        <p class="contact-text">nonch. is open to new contracts. Whether the project is an app, a website, or something in between — the studio is available to discuss.</p>
+        <p class="contact-text">Whether it's about gymmit., a potential future project, or just a question — the inbox is always open.</p>
         <a class="contact-email" href="mailto:gymmit@nonch.uk">gymmit@nonch.uk</a>
       </div>
     </div>
   </section>
 
   <footer>
-    <span class="footer-logo">nonch.</
+    <span class="footer-logo">nonch.</span>
+    <span class="footer-copy">&copy; 2026 nonch. development</span>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
