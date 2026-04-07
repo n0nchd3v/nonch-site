@@ -7,21 +7,24 @@
   <meta name="description" content="gymmit. is the fitness tracking app that keeps you consistent. Log workouts, track calories, and compete with your community." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --blue: #0066FF;
       --blue-light: #3385FF;
-      --blue-dim: rgba(0, 102, 255, 0.1);
-      --blue-border: rgba(0, 102, 255, 0.25);
-      --bg: #000000;
-      --surface: #0a0a0a;
-      --surface2: #111111;
-      --surface3: #1a1a1a;
-      --border: rgba(255,255,255,0.07);
-      --text: #e8e8e8;
-      --muted: #5a5a5a;
-      --white: #ffffff;
+      --blue-glow: rgba(0,102,255,0.15);
+      --blue-border: rgba(0,102,255,0.25);
+      --gold: #FFB800;
+      --gold-glow: rgba(255,184,0,0.12);
+      --gold-border: rgba(255,184,0,0.3);
+      --bg: #050508;
+      --surface: #0c0c10;
+      --surface2: #121218;
+      --surface3: #1a1a22;
+      --border: rgba(255,255,255,0.06);
+      --text: #c8c8d0;
+      --muted: #55556a;
+      --white: #f0f0f5;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,21 +33,20 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Outfit', sans-serif;
       font-size: 16px;
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* grain */
+    /* Grain overlay */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 0;
-      opacity: 0.5;
     }
 
     /* ── NAV ── */
@@ -55,21 +57,17 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.2rem 2.5rem;
+      padding: 1rem 2.5rem;
       border-bottom: 1px solid var(--border);
-      background: rgba(0,0,0,0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(5,5,8,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
+    .nav-left { display: flex; align-items: center; gap: 1.5rem; }
 
     .nav-brand {
-      font-size: 1.45rem;
+      font-size: 1.4rem;
       font-weight: 700;
       color: var(--blue);
       text-decoration: none;
@@ -77,121 +75,82 @@
     }
 
     .nav-back {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 600;
       color: var(--muted);
       text-decoration: none;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       border-left: 1px solid var(--border);
       padding-left: 1.5rem;
       transition: color 0.2s;
+      font-family: 'JetBrains Mono', monospace;
     }
     .nav-back:hover { color: var(--text); }
 
     .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      list-style: none;
+      display: flex; align-items: center; gap: 2rem; list-style: none;
     }
 
     .nav-links a {
       color: var(--muted);
       text-decoration: none;
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       transition: color 0.2s;
+      font-family: 'JetBrains Mono', monospace;
     }
-
     .nav-links a:hover { color: var(--white); }
 
     .nav-cta {
       background: var(--blue) !important;
       color: var(--white) !important;
-      padding: 0.45rem 1.1rem;
+      padding: 0.4rem 1rem;
       border-radius: 6px;
       text-transform: none !important;
       letter-spacing: 0 !important;
-      font-size: 0.82rem !important;
+      font-size: 0.8rem !important;
       font-weight: 700 !important;
-      transition: background 0.2s !important;
+      font-family: 'Outfit', sans-serif !important;
+      transition: background 0.2s, box-shadow 0.2s !important;
     }
-    .nav-cta:hover { background: var(--blue-light) !important; }
+    .nav-cta:hover {
+      background: var(--blue-light) !important;
+      box-shadow: 0 0 20px rgba(0,102,255,0.3) !important;
+    }
 
     /* ── SHARED ── */
-    .wrap {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+    .wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    section { position: relative; z-index: 1; }
 
     .tag {
       display: inline-block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--blue);
-      margin-bottom: 0.9rem;
+      margin-bottom: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
     }
 
-    section { position: relative; z-index: 1; }
-
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 9rem 2rem 5rem;
-    }
-
-    .hero-logo {
-      font-size: clamp(5rem, 16vw, 11rem);
-      font-weight: 700;
-      color: var(--blue);
-      letter-spacing: -4px;
-      line-height: 1;
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.15s forwards;
-    }
-
-    .hero-headline {
-      font-size: clamp(1.15rem, 2.8vw, 1.6rem);
-      font-weight: 600;
+    .section-title {
+      font-size: clamp(1.9rem, 4.5vw, 3rem);
+      font-weight: 800;
       color: var(--white);
-      max-width: 540px;
-      line-height: 1.4;
-      margin-bottom: 1rem;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.28s forwards;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
     }
+    .section-title span { color: var(--blue); }
 
-    .hero-sub {
+    .section-sub {
       font-size: 0.95rem;
-      font-weight: 400;
       color: var(--muted);
-      max-width: 440px;
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.38s forwards;
-    }
-
-    .hero-btns {
-      display: flex;
-      gap: 0.9rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.48s forwards;
+      max-width: 460px;
+      margin: 1rem auto 0;
+      font-weight: 400;
     }
 
     .btn {
@@ -203,14 +162,103 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 0.88rem;
-      transition: all 0.2s;
-      font-family: 'Poppins', sans-serif;
+      transition: all 0.25s;
+      font-family: 'Outfit', sans-serif;
+    }
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+      box-shadow: 0 0 24px rgba(0,102,255,0.2);
+    }
+    .btn-primary:hover {
+      background: var(--blue-light);
+      box-shadow: 0 0 36px rgba(0,102,255,0.35);
+      transform: translateY(-1px);
+    }
+    .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--blue-border); color: var(--white); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 9rem 2rem 5rem;
+      position: relative;
     }
 
-    .btn-primary { background: var(--blue); color: var(--white); }
-    .btn-primary:hover { background: var(--blue-light); }
-    .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
-    .btn-secondary:hover { border-color: var(--blue-border); color: var(--white); }
+    /* Hero glow */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0,102,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: var(--blue-glow);
+      border: 1px solid var(--blue-border);
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      font-family: 'JetBrains Mono', monospace;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.1s forwards;
+    }
+
+    .hero-logo {
+      font-size: clamp(5rem, 16vw, 11rem);
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: -6px;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.2s forwards;
+    }
+
+    .hero-headline {
+      font-size: clamp(1.15rem, 2.8vw, 1.55rem);
+      font-weight: 600;
+      color: var(--white);
+      max-width: 560px;
+      line-height: 1.45;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.32s forwards;
+    }
+
+    .hero-sub {
+      font-size: 0.92rem;
+      font-weight: 400;
+      color: var(--muted);
+      max-width: 440px;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.42s forwards;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 0.9rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.52s forwards;
+    }
 
     /* hero media */
     .hero-media {
@@ -218,7 +266,7 @@
       width: 100%;
       max-width: 960px;
       opacity: 0;
-      animation: fadeUp 0.7s 0.6s forwards;
+      animation: fadeUp 0.7s 0.65s forwards;
     }
 
     .media-ph {
@@ -232,73 +280,58 @@
       align-items: center;
       justify-content: center;
       gap: 0.6rem;
-      color: rgba(0,102,255,0.4);
+      color: rgba(0,102,255,0.35);
       font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
-    /* ── STATS ── */
-    #stats {
+    /* ── MARQUEE ── */
+    .marquee-section {
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      padding: 1.2rem 0;
     }
 
-    .stats-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2.8rem 2rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1.5rem;
-      text-align: center;
+    .marquee-track {
+      display: flex;
+      gap: 3rem;
+      animation: scroll 25s linear infinite;
+      width: max-content;
     }
 
-    .stat-value {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--blue);
-      letter-spacing: -1px;
-      line-height: 1;
-    }
-
-    .stat-label {
+    .marquee-item {
       font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--muted);
-      margin-top: 0.35rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    /* ── FEATURES OVERVIEW ── */
-    #features {
-      padding: 7rem 0;
-    }
-
-    .features-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.9rem, 4.5vw, 3rem);
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: -1.5px;
-      line-height: 1.1;
-    }
-
-    .section-title span { color: var(--blue); }
-
-    .section-sub {
-      font-size: 0.95rem;
       color: var(--muted);
-      max-width: 460px;
-      margin: 1rem auto 0;
-      font-weight: 400;
+      white-space: nowrap;
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
+
+    .marquee-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--blue);
+      opacity: 0.5;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── FEATURES ── */
+    #features { padding: 7rem 0; }
+
+    .features-header { text-align: center; margin-bottom: 4rem; }
 
     .features-grid {
       display: grid;
@@ -312,44 +345,44 @@
     .feat-card {
       background: var(--surface);
       padding: 2rem 2rem 2.2rem;
-      transition: background 0.2s;
+      transition: all 0.3s;
       border-top: 2px solid transparent;
+      position: relative;
     }
-
     .feat-card:hover {
       background: var(--surface2);
       border-top-color: var(--blue);
     }
 
-    .feat-num {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      color: var(--blue);
-      opacity: 0.55;
-      margin-bottom: 1.1rem;
+    .feat-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--blue-glow);
+      border: 1px solid var(--blue-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
     }
 
     .feat-title {
       font-size: 1rem;
       font-weight: 700;
       color: var(--white);
-      margin-bottom: 0.55rem;
+      margin-bottom: 0.5rem;
       letter-spacing: -0.2px;
     }
-
     .feat-desc {
       font-size: 0.84rem;
       color: var(--muted);
-      line-height: 1.68;
+      line-height: 1.7;
       font-weight: 400;
     }
 
-    /* ── DEEP DIVE ROWS ── */
-    #showcase {
-      padding: 7rem 0;
-      border-top: 1px solid var(--border);
-    }
+    /* ── SHOWCASE ROWS ── */
+    #showcase { padding: 7rem 0; border-top: 1px solid var(--border); }
 
     .showcase-row {
       display: grid;
@@ -358,7 +391,6 @@
       align-items: center;
       margin-bottom: 8rem;
     }
-
     .showcase-row:last-child { margin-bottom: 0; }
     .showcase-row.flip { direction: rtl; }
     .showcase-row.flip > * { direction: ltr; }
@@ -371,7 +403,6 @@
       line-height: 1.2;
       margin-bottom: 0.9rem;
     }
-
     .showcase-heading span { color: var(--blue); }
 
     .showcase-body {
@@ -382,13 +413,7 @@
       margin-bottom: 1.4rem;
     }
 
-    .feat-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-    }
-
+    .feat-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
     .feat-list li {
       font-size: 0.84rem;
       color: var(--text);
@@ -397,17 +422,14 @@
       align-items: center;
       gap: 0.6rem;
     }
-
     .feat-list li::before {
       content: '';
-      width: 5px;
-      height: 5px;
+      width: 5px; height: 5px;
       border-radius: 50%;
       background: var(--blue);
       flex-shrink: 0;
     }
 
-    /* media placeholders */
     .sc-ph {
       width: 100%;
       aspect-ratio: 9/17;
@@ -419,38 +441,132 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      color: rgba(0,102,255,0.35);
+      color: rgba(0,102,255,0.3);
       font-size: 0.65rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
-
-    .sc-ph-wide {
-      width: 100%;
-      aspect-ratio: 4/3;
-      background: var(--surface2);
-      border: 1px dashed var(--blue-border);
-      border-radius: 22px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      color: rgba(0,102,255,0.35);
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
     .ph-note { font-size: 0.58rem; opacity: 0.5; }
 
-    /* ── VIDEO ── */
-    #video-section {
+    /* ── PREMIUM / PRICING ── */
+    #pricing {
       padding: 7rem 0;
       border-top: 1px solid var(--border);
     }
+
+    .pricing-header { text-align: center; margin-bottom: 4rem; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .price-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .price-card:hover {
+      border-color: var(--blue-border);
+    }
+
+    .price-card.premium {
+      border-color: var(--gold-border);
+      background: linear-gradient(165deg, var(--surface) 0%, rgba(255,184,0,0.03) 100%);
+    }
+    .price-card.premium:hover {
+      box-shadow: 0 0 40px rgba(255,184,0,0.06);
+      border-color: rgba(255,184,0,0.5);
+    }
+
+    .price-badge {
+      position: absolute;
+      top: -10px;
+      right: 1.5rem;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .price-badge.free-badge {
+      background: var(--blue-glow);
+      color: var(--blue);
+      border: 1px solid var(--blue-border);
+    }
+    .price-badge.pro-badge {
+      background: var(--gold-glow);
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+    }
+
+    .price-tier {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.5px;
+    }
+    .price-tier-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .price-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .price-features li {
+      font-size: 0.84rem;
+      color: var(--text);
+      font-weight: 400;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      line-height: 1.5;
+    }
+    .price-check {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+    .check-blue {
+      background: var(--blue-glow);
+      color: var(--blue);
+      border: 1px solid var(--blue-border);
+    }
+    .check-gold {
+      background: var(--gold-glow);
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+    }
+    .price-limit {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── VIDEO ── */
+    #video-section { padding: 7rem 0; border-top: 1px solid var(--border); }
 
     .video-ph {
       width: 100%;
@@ -467,8 +583,7 @@
     }
 
     .play-btn {
-      width: 64px;
-      height: 64px;
+      width: 64px; height: 64px;
       border-radius: 50%;
       background: var(--blue);
       display: flex;
@@ -477,24 +592,25 @@
       font-size: 1.2rem;
       color: white;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.3s;
+      box-shadow: 0 0 30px rgba(0,102,255,0.25);
     }
-
-    .play-btn:hover { background: var(--blue-light); }
+    .play-btn:hover {
+      background: var(--blue-light);
+      box-shadow: 0 0 50px rgba(0,102,255,0.4);
+      transform: scale(1.05);
+    }
 
     .video-caption {
       font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(0,102,255,0.45);
+      color: rgba(0,102,255,0.4);
     }
 
     /* ── SCREENSHOTS ── */
-    #screenshots {
-      padding: 7rem 0;
-      border-top: 1px solid var(--border);
-    }
+    #screenshots { padding: 7rem 0; border-top: 1px solid var(--border); }
 
     .shots-grid {
       display: grid;
@@ -509,25 +625,38 @@
       border: 1px dashed var(--blue-border);
       border-radius: 20px;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 0.4rem;
       color: rgba(0,102,255,0.3);
       font-size: 0.62rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      transition: border-color 0.2s;
+      transition: all 0.3s;
     }
-
-    .shot-ph:hover { border-color: rgba(0,102,255,0.55); }
+    .shot-ph:hover {
+      border-color: rgba(0,102,255,0.5);
+      background: var(--surface3);
+    }
 
     /* ── DOWNLOAD CTA ── */
     #download {
       padding: 8rem 0;
       border-top: 1px solid var(--border);
       text-align: center;
+      position: relative;
+    }
+
+    #download::before {
+      content: '';
+      position: absolute;
+      bottom: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0,102,255,0.06) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .download-title {
@@ -538,7 +667,6 @@
       line-height: 1.05;
       margin-bottom: 1.2rem;
     }
-
     .download-title span { color: var(--blue); }
 
     .download-sub {
@@ -564,10 +692,7 @@
       padding: 3rem 2.5rem 2rem;
     }
 
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
 
     .footer-top {
       display: flex;
@@ -579,28 +704,22 @@
     }
 
     .footer-brand { font-size: 1.7rem; font-weight: 700; color: var(--blue); letter-spacing: -0.5px; }
-    .footer-tagline { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; font-weight: 400; }
-
-    .footer-tagline a {
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .footer-tagline { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; }
+    .footer-tagline a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .footer-tagline a:hover { color: var(--text); }
 
     .footer-links { display: flex; gap: 3.5rem; flex-wrap: wrap; }
 
     .footer-col h4 {
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text);
       margin-bottom: 1rem;
+      font-family: 'JetBrains Mono', monospace;
     }
-
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
-
     .footer-col ul a {
       font-size: 0.84rem;
       color: var(--muted);
@@ -608,7 +727,6 @@
       font-weight: 400;
       transition: color 0.2s;
     }
-
     .footer-col ul a:hover { color: var(--white); }
     .footer-col ul a.hl { color: var(--blue); }
     .footer-col ul a.hl:hover { color: var(--blue-light); }
@@ -622,9 +740,7 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
-
     .footer-bottom p { font-size: 0.75rem; color: var(--muted); }
-
     .footer-legal { display: flex; gap: 1.5rem; }
     .footer-legal a { font-size: 0.75rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .footer-legal a:hover { color: var(--blue); }
@@ -635,14 +751,25 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* scroll-triggered fade-in */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .features-grid { grid-template-columns: repeat(2, 1fr); }
       .showcase-row { grid-template-columns: 1fr; gap: 2.5rem; }
       .showcase-row.flip { direction: ltr; }
       .shots-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 440px; }
     }
-
     @media (max-width: 640px) {
       nav { padding: 1rem 1.2rem; }
       .nav-links { gap: 1rem; }
@@ -662,14 +789,15 @@
     </div>
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pro</a></li>
       <li><a href="#showcase">App</a></li>
-      <li><a href="#screenshots">Screenshots</a></li>
       <li><a href="#download" class="nav-cta">Download</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section id="hero">
+    <div class="hero-badge">Now on iOS &middot; Free to download</div>
     <h1 class="hero-logo">gymmit.</h1>
     <h2 class="hero-headline">Track your gym. Build your streak. Compete with everyone.</h2>
     <p class="hero-sub">Log workouts, track calories, climb the leaderboard, and share progress with a community that keeps you accountable.</p>
@@ -682,14 +810,6 @@
     </div>
 
     <div class="hero-media wrap" style="padding:0;">
-      <!--
-        Replace with your hero image or video:
-        <img src="hero-screenshot.png" alt="gymmit app" style="width:100%;border-radius:16px;">
-        or
-        <video autoplay muted loop playsinline style="width:100%;border-radius:16px;">
-          <source src="demo.mp4" type="video/mp4">
-        </video>
-      -->
       <div class="media-ph">
         <span>+ INSERT HERO IMAGE OR VIDEO</span>
         <span style="font-size:0.62rem;opacity:0.5;">Replace this div with &lt;img&gt; or &lt;video&gt;</span>
@@ -697,67 +817,119 @@
     </div>
   </section>
 
-  <!-- STATS -->
-  <div id="stats">
-    <div class="stats-inner">
-      <div>
-        <div class="stat-value">iOS</div>
-        <div class="stat-label">Platform</div>
-      </div>
-      <div>
-        <div class="stat-value">Free</div>
-        <div class="stat-label">To Download</div>
-      </div>
-      <div>
-        <div class="stat-value">6+</div>
-        <div class="stat-label">Core Features</div>
-      </div>
-      <div>
-        <div class="stat-value">v1.0</div>
-        <div class="stat-label">Current Version</div>
-      </div>
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span class="marquee-item"><span class="marquee-dot"></span>Workout Tracking</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Calorie &amp; Macro Logging</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Streaks &amp; Points</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Community Leaderboard</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Social Feed</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Exercise Library</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>AI Training Plans</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>AI Food Scanner</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Advanced Analytics</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Workout Tracking</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Calorie &amp; Macro Logging</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Streaks &amp; Points</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Community Leaderboard</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Social Feed</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Exercise Library</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>AI Training Plans</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>AI Food Scanner</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Advanced Analytics</span>
     </div>
   </div>
 
   <!-- FEATURES OVERVIEW -->
   <section id="features">
     <div class="wrap">
-      <div class="features-header">
+      <div class="features-header reveal">
         <p class="tag">What's inside</p>
         <h2 class="section-title">Everything a gym-goer<br><span>actually needs.</span></h2>
         <p class="section-sub">Built around the things that keep you consistent — not a bloated wellness app.</p>
       </div>
 
-      <div class="features-grid">
+      <div class="features-grid reveal">
         <div class="feat-card">
-          <div class="feat-num">01</div>
+          <div class="feat-icon">&#128170;</div>
           <div class="feat-title">Workout Tracking</div>
           <div class="feat-desc">Log every set, rep, and weight in real time. Build custom workouts, schedule sessions, and see your full training history at a glance.</div>
         </div>
         <div class="feat-card">
-          <div class="feat-num">02</div>
+          <div class="feat-icon">&#127860;</div>
           <div class="feat-title">Calorie &amp; Macro Tracking</div>
-          <div class="feat-desc">Log meals across Breakfast, Lunch, Dinner, and Snacks. Set daily calorie and macro goals and track progress against them every day.</div>
+          <div class="feat-desc">Log meals across Breakfast, Lunch, Dinner, and Snacks. Set daily calorie and macro goals and track progress every day.</div>
         </div>
         <div class="feat-card">
-          <div class="feat-num">03</div>
+          <div class="feat-icon">&#128293;</div>
           <div class="feat-title">Streaks</div>
           <div class="feat-desc">Keep your workout streak, calorie streak, and post streak alive. Lose it once and start over — the pressure is the point.</div>
         </div>
         <div class="feat-card">
-          <div class="feat-num">04</div>
+          <div class="feat-icon">&#127942;</div>
           <div class="feat-title">Points &amp; Leaderboards</div>
-          <div class="feat-desc">Earn points for every session logged, streak maintained, and goal hit. Compete on the leaderboard and see how you rank against the community.</div>
+          <div class="feat-desc">Earn points for every session logged, streak maintained, and goal hit. Compete on the leaderboard and see how you stack up.</div>
         </div>
         <div class="feat-card">
-          <div class="feat-num">05</div>
+          <div class="feat-icon">&#128172;</div>
           <div class="feat-title">Social Feed</div>
           <div class="feat-desc">Share workouts, nutrition wins, and milestones with your followers. Like, comment, and keep each other accountable on a feed built for gym-goers.</div>
         </div>
         <div class="feat-card">
-          <div class="feat-num">06</div>
+          <div class="feat-icon">&#128218;</div>
           <div class="feat-title">Exercise Library</div>
           <div class="feat-desc">Browse a curated library of exercises with demo videos. Filter by muscle group, equipment, or difficulty and add straight to your workout.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING / BASE vs PRO -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="pricing-header reveal">
+        <p class="tag">Base vs Pro</p>
+        <h2 class="section-title">Free to start.<br><span>Pro to dominate.</span></h2>
+        <p class="section-sub">Everything you need is free. Pro unlocks the tools for people who take it seriously.</p>
+      </div>
+
+      <div class="pricing-grid reveal">
+        <!-- FREE -->
+        <div class="price-card">
+          <div class="price-badge free-badge">Free</div>
+          <div class="price-tier">Base</div>
+          <div class="price-tier-sub">Everything to get started and stay consistent.</div>
+          <ul class="price-features">
+            <li><span class="price-check check-blue">&#10003;</span>Full workout tracking with live session logging</li>
+            <li><span class="price-check check-blue">&#10003;</span>Calorie and macro tracking with meal logging</li>
+            <li><span class="price-check check-blue">&#10003;</span>Workout, calorie, and post streaks</li>
+            <li><span class="price-check check-blue">&#10003;</span>Points system and community leaderboard</li>
+            <li><span class="price-check check-blue">&#10003;</span>Social feed with likes, comments, and follows</li>
+            <li><span class="price-check check-blue">&#10003;</span>Exercise library with filters and search</li>
+            <li><span class="price-check check-blue">&#10003;</span>Personal records and workout history</li>
+            <li><span class="price-check check-blue">&#10003;</span>Up to 5 custom workouts <span class="price-limit">&middot; limit</span></li>
+            <li><span class="price-check check-blue">&#10003;</span>Up to 10 custom exercises <span class="price-limit">&middot; limit</span></li>
+            <li><span class="price-check check-blue">&#10003;</span>Up to 5 community workout saves <span class="price-limit">&middot; limit</span></li>
+          </ul>
+        </div>
+
+        <!-- PRO -->
+        <div class="price-card premium">
+          <div class="price-badge pro-badge">Pro</div>
+          <div class="price-tier">Pro</div>
+          <div class="price-tier-sub">AI-powered plans, unlimited creation, and deep insights.</div>
+          <ul class="price-features">
+            <li><span class="price-check check-gold">&#10003;</span><strong>AI Training Plan</strong> — personalised workout &amp; nutrition programme built around your goals</li>
+            <li><span class="price-check check-gold">&#10003;</span><strong>AI Food Scanner</strong> — snap a photo to instantly log a meal</li>
+            <li><span class="price-check check-gold">&#10003;</span><strong>Unlimited</strong> workout creation, custom exercises, and community saves</li>
+            <li><span class="price-check check-gold">&#10003;</span><strong>Advanced analytics</strong> — strength forecasting, plateau alerts, progressive overload charts</li>
+            <li><span class="price-check check-gold">&#10003;</span><strong>Adherence intelligence</strong> — drop-off detection and smart recommendations</li>
+            <li><span class="price-check check-gold">&#10003;</span><strong>Recovery risk scoring</strong> — deload guidance and fatigue tracking</li>
+            <li><span class="price-check check-gold">&#10003;</span>Workout history PDF exports</li>
+            <li><span class="price-check check-gold">&#10003;</span>Exercise demo video uploads</li>
+            <li><span class="price-check check-gold">&#10003;</span>All premium themes — Ocean, Sunset, Luxe, Ember &amp; more</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -768,7 +940,7 @@
     <div class="wrap">
 
       <!-- Workout Tracking -->
-      <div class="showcase-row">
+      <div class="showcase-row reveal">
         <div>
           <p class="tag">Workout Tracking</p>
           <h3 class="showcase-heading">Log every set.<br><span>Beat every record.</span></h3>
@@ -782,9 +954,6 @@
           </ul>
         </div>
         <div>
-          <!--
-            Replace with: <img src="workout-screen.png" alt="Workout tracking" style="width:100%;border-radius:22px;">
-          -->
           <div class="sc-ph">
             <span>+ Workout Screen</span>
             <span class="ph-note">9:16 PNG recommended</span>
@@ -793,7 +962,7 @@
       </div>
 
       <!-- Calorie Tracking -->
-      <div class="showcase-row flip">
+      <div class="showcase-row flip reveal">
         <div>
           <p class="tag">Calorie &amp; Nutrition</p>
           <h3 class="showcase-heading">Hit your macros.<br><span>Every single day.</span></h3>
@@ -807,9 +976,6 @@
           </ul>
         </div>
         <div>
-          <!--
-            Replace with: <img src="nutrition-screen.png" alt="Calorie tracking" style="width:100%;border-radius:22px;">
-          -->
           <div class="sc-ph">
             <span>+ Nutrition Screen</span>
             <span class="ph-note">9:16 PNG recommended</span>
@@ -817,8 +983,8 @@
         </div>
       </div>
 
-      <!-- Leaderboards & Points -->
-      <div class="showcase-row">
+      <!-- Leaderboards -->
+      <div class="showcase-row reveal">
         <div>
           <p class="tag">Points &amp; Leaderboards</p>
           <h3 class="showcase-heading">Earn points.<br><span>Climb the board.</span></h3>
@@ -831,9 +997,6 @@
           </ul>
         </div>
         <div>
-          <!--
-            Replace with: <img src="leaderboard-screen.png" alt="Leaderboard" style="width:100%;border-radius:22px;">
-          -->
           <div class="sc-ph">
             <span>+ Leaderboard Screen</span>
             <span class="ph-note">9:16 PNG recommended</span>
@@ -842,7 +1005,7 @@
       </div>
 
       <!-- Social -->
-      <div class="showcase-row flip">
+      <div class="showcase-row flip reveal">
         <div>
           <p class="tag">Social</p>
           <h3 class="showcase-heading">Train with people<br><span>who get it.</span></h3>
@@ -856,12 +1019,31 @@
           </ul>
         </div>
         <div>
-          <!--
-            Replace with: <img src="feed-screen.png" alt="Social feed" style="width:100%;border-radius:22px;">
-          -->
           <div class="sc-ph">
             <span>+ Social Feed Screen</span>
             <span class="ph-note">9:16 PNG recommended</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Plan (Pro) -->
+      <div class="showcase-row reveal">
+        <div>
+          <p class="tag" style="color:var(--gold);">Pro &middot; AI Training Plan</p>
+          <h3 class="showcase-heading">Your goals.<br><span style="color:var(--gold);">Your plan.</span></h3>
+          <p class="showcase-body">Tell gymmit. your goal — hypertrophy, fat loss, strength, endurance, sport-specific, or general fitness. It builds a full personalised workout and nutrition plan around your experience, schedule, exercise preferences, and dietary needs. Powered by AI, tailored to you.</p>
+          <ul class="feat-list">
+            <li>Natural language goal input</li>
+            <li>Full workout split with sets, reps, rest, and RPE</li>
+            <li>Daily meal plans with macros and ingredients</li>
+            <li>Training &amp; rest day calorie cycling</li>
+            <li>Exercise swaps and plan progression</li>
+          </ul>
+        </div>
+        <div>
+          <div class="sc-ph" style="border-color:var(--gold-border);">
+            <span style="color:rgba(255,184,0,0.4);">+ AI Plan Screen</span>
+            <span class="ph-note" style="color:rgba(255,184,0,0.25);">9:16 PNG recommended</span>
           </div>
         </div>
       </div>
@@ -872,25 +1054,12 @@
   <!-- DEMO VIDEO -->
   <section id="video-section">
     <div class="wrap">
-      <div style="text-align:center;">
+      <div style="text-align:center;" class="reveal">
         <p class="tag">App Walkthrough</p>
         <h2 class="section-title">See it in <span>action.</span></h2>
         <p class="section-sub" style="margin-bottom:0;">From first login to your first logged session.</p>
       </div>
-      <!--
-        Replace the .video-ph block with your video:
-        Self-hosted:
-        <video controls poster="thumb.jpg" style="width:100%;border-radius:16px;margin-top:3rem;">
-          <source src="walkthrough.mp4" type="video/mp4">
-        </video>
-
-        YouTube:
-        <div style="margin-top:3rem;">
-          <iframe style="width:100%;aspect-ratio:16/9;border-radius:16px;border:none;"
-            src="https://www.youtube.com/embed/YOUR_ID" allowfullscreen></iframe>
-        </div>
-      -->
-      <div class="video-ph">
+      <div class="video-ph reveal">
         <div class="play-btn">&#9654;</div>
         <span class="video-caption">Insert demo video</span>
         <span style="font-size:0.65rem;color:var(--muted);font-weight:400;">Replace with &lt;video&gt; or YouTube &lt;iframe&gt;</span>
@@ -901,13 +1070,12 @@
   <!-- SCREENSHOTS -->
   <section id="screenshots">
     <div class="wrap">
-      <div style="text-align:center;">
+      <div style="text-align:center;" class="reveal">
         <p class="tag">Screenshots</p>
         <h2 class="section-title">Every screen, <span>built right.</span></h2>
         <p class="section-sub" style="margin-bottom:0;">Clean, fast, and intuitive from the first tap.</p>
       </div>
-      <div class="shots-grid">
-        <!-- Replace each block with: <img src="screen-N.png" alt="..." style="width:100%;border-radius:20px;"> -->
+      <div class="shots-grid reveal">
         <div class="shot-ph"><span>+ Screen 1</span></div>
         <div class="shot-ph"><span>+ Screen 2</span></div>
         <div class="shot-ph"><span>+ Screen 3</span></div>
@@ -919,17 +1087,19 @@
   <!-- DOWNLOAD CTA -->
   <section id="download">
     <div class="wrap">
-      <h2 class="download-title">Start your<br><span>streak today.</span></h2>
-      <p class="download-sub">Free to download. Log your first session in under a minute.</p>
-      <div class="download-btns">
-        <a href="#" class="btn btn-primary">
-          <svg width="17" height="17" fill="none" viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.37.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.39-1.32 2.76-2.54 3.99zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" fill="currentColor"/></svg>
-          App Store
-        </a>
-        <a href="#" class="btn btn-secondary">
-          <svg width="17" height="17" fill="none" viewBox="0 0 24 24"><path d="M3.18 23.76c.28.15.6.16.9 0l12.77-7.33-2.88-2.89L3.18 23.76zm16.4-9.47L16.73 12l2.85-2.29-13.37-7.68c-.3-.17-.64-.17-.93-.02l10.84 10.84-3.77 3.77.09.08 3.14-2.11zM2.14.69C2.05.93 2 1.2 2 1.5v21c0 .3.05.57.14.81L13.8 12 2.14.69zM19.58 9.93L16.72 12l2.86 2.07 3.21-1.84c.92-.53.92-1.39 0-1.92l-3.21-1.38z" fill="currentColor"/></svg>
-          Google Play
-        </a>
+      <div class="reveal">
+        <h2 class="download-title">Start your<br><span>streak today.</span></h2>
+        <p class="download-sub">Free to download. Log your first session in under a minute.</p>
+        <div class="download-btns">
+          <a href="#" class="btn btn-primary">
+            <svg width="17" height="17" fill="none" viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.37.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.39-1.32 2.76-2.54 3.99zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" fill="currentColor"/></svg>
+            App Store
+          </a>
+          <a href="#" class="btn btn-secondary">
+            <svg width="17" height="17" fill="none" viewBox="0 0 24 24"><path d="M3.18 23.76c.28.15.6.16.9 0l12.77-7.33-2.88-2.89L3.18 23.76zm16.4-9.47L16.73 12l2.85-2.29-13.37-7.68c-.3-.17-.64-.17-.93-.02l10.84 10.84-3.77 3.77.09.08 3.14-2.11zM2.14.69C2.05.93 2 1.2 2 1.5v21c0 .3.05.57.14.81L13.8 12 2.14.69zM19.58 9.93L16.72 12l2.86 2.07 3.21-1.84c.92-.53.92-1.39 0-1.92l-3.21-1.38z" fill="currentColor"/></svg>
+            Google Play
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -947,6 +1117,7 @@
             <h4>App</h4>
             <ul>
               <li><a href="#features">Features</a></li>
+              <li><a href="#pricing">Pro</a></li>
               <li><a href="#showcase">Deep Dive</a></li>
               <li><a href="#screenshots">Screenshots</a></li>
               <li><a href="#download">Download</a></li>
@@ -977,6 +1148,14 @@
       </div>
     </div>
   </footer>
+
+  <!-- Scroll reveal -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
