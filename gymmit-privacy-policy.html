@@ -449,8 +449,8 @@
       </div>
       <h1>Privacy <span>Policy</span></h1>
       <div class="meta">
-        <span class="meta-item">Effective: <strong>25 February 2026</strong></span>
-        <span class="meta-item">Version: <strong>1.1</strong></span>
+        <span class="meta-item">Effective: <strong>17 May 2026</strong></span>
+        <span class="meta-item">Version: <strong>1.2</strong></span>
         <span class="meta-item">Governed by: <strong>nonch. development</strong></span>
       </div>
     </header>
@@ -466,7 +466,7 @@
       </div>
       <div class="summary-card">
         <h4>Minimal sharing</h4>
-        <p>Data is only shared with trusted service providers necessary to operate the platform — never for advertising.</p>
+        <p>Data is only shared with trusted service providers necessary to operate the platform. Limited, non-personalised advertising is used to support the free tier.</p>
       </div>
       <div class="summary-card">
         <h4>Fitness data is sensitive</h4>
@@ -539,6 +539,15 @@
         <li>Food entries logged per meal (Breakfast, Lunch, Dinner, Snacks)</li>
         <li>Saved foods and custom meal templates</li>
         <li>Nutrition logs by date</li>
+        <li>Barcode scans (the barcode value is sent to OpenFoodFacts to retrieve product nutrition data)</li>
+        <li>Food photos and optional text descriptions submitted to the AI food scanner for nutritional analysis</li>
+      </ul>
+
+      <h3>AI-Generated Data</h3>
+      <p>When premium AI features are used, the following data is processed:</p>
+      <ul>
+        <li><strong>AI Food Scanner:</strong> A photo of a meal (and an optional text description) is sent to an AI provider (OpenAI or Anthropic) to estimate nutritional content. The image is processed in real time and is not stored by the AI provider beyond the API call.</li>
+        <li><strong>AI Training Plan:</strong> Fitness profile data (experience level, goals, available days, exercise preferences, dietary requirements) is sent to an AI provider to generate a personalised workout and nutrition plan. No images are involved.</li>
       </ul>
 
       <h3>Social &amp; Content Data</h3>
@@ -558,9 +567,9 @@
 
       <!-- NEW: Subscription Data subsection -->
       <h3>Subscription &amp; Purchase Data</h3>
-      <p>gymmit. does not collect or store payment card details — all payments are handled entirely by Apple. The following subscription-related data is stored to determine which features an account can access:</p>
+      <p>gymmit. does not collect or store payment card details — all payments are handled entirely by Apple or Google. The following subscription-related data is stored to determine which features an account can access:</p>
       <ul>
-        <li><strong>Apple ID App Store receipt reference</strong> (anonymised identifier, not an email address)</li>
+        <li><strong>App Store or Google Play receipt reference</strong> (anonymised identifier, not an email address)</li>
         <li><strong>Subscription status</strong> (active, expired, cancelled, billing issue)</li>
         <li><strong>Entitlement ID</strong> (e.g. "Pro")</li>
         <li><strong>Subscription platform</strong> (iOS / Android)</li>
@@ -596,7 +605,12 @@
           <tr><td><strong>Personalisation</strong></td><td>Fitness profile, goals, history</td><td>Contract / Legitimate interest</td></tr>
           <tr><td><strong>Social features</strong></td><td>Profile, posts, follows</td><td>Contract performance</td></tr>
           <tr><td><strong>Subscription management</strong></td><td>Subscription status, entitlement data, billing period</td><td>Contract performance</td></tr>
+          <tr><td><strong>AI food scanning</strong></td><td>Meal photo and optional text description (processed, not stored by AI provider)</td><td>Contract performance</td></tr>
+          <tr><td><strong>AI training plans</strong></td><td>Fitness profile, goals, schedule, dietary requirements (processed, not stored by AI provider)</td><td>Contract performance</td></tr>
           <tr><td><strong>Content moderation</strong></td><td>Uploaded media (scanned, not retained by moderation provider)</td><td>Legitimate interest / Legal obligation</td></tr>
+          <tr><td><strong>Advertising</strong></td><td>Device advertising identifier (subject to ATT consent on iOS), ad interaction data</td><td>Legitimate interest / Consent</td></tr>
+          <tr><td><strong>Product analytics</strong></td><td>Anonymised feature usage, screen views, event data (no personal health data is sent)</td><td>Legitimate interest</td></tr>
+          <tr><td><strong>Crash reporting</strong></td><td>Stack traces, device info, app version (no personal data)</td><td>Legitimate interest</td></tr>
           <tr><td><strong>Push notifications</strong></td><td>Notification token, activity triggers</td><td>Consent</td></tr>
           <tr><td><strong>Bug reports &amp; support</strong></td><td>Error logs, user-submitted descriptions</td><td>Legitimate interest</td></tr>
           <tr><td><strong>Security &amp; fraud prevention</strong></td><td>Account data, usage patterns</td><td>Legitimate interest / Legal obligation</td></tr>
@@ -604,7 +618,7 @@
         </tbody>
       </table>
       <div class="highlight">
-        <p><strong>Data is not used for advertising purposes.</strong> gymmit. does not display ads and does not share personal data with advertising networks or data brokers.</p>
+        <p><strong>Personal data is not sold to advertisers or data brokers.</strong> gymmit. displays limited, non-personalised advertising within the social feed to support the free tier. On iOS, personalised ad delivery requires explicit consent via Apple's App Tracking Transparency prompt. Ad serving is provided by Google AdMob. No personal health, nutrition, or workout data is shared with advertising networks.</p>
       </div>
     </section>
 
@@ -617,10 +631,16 @@
       <p>Trusted third-party providers are used to operate gymmit. These providers only process data on behalf of nonch. development, according to its instructions, and are bound by strict data protection agreements:</p>
       <ul>
         <li><strong>Supabase</strong> — Database hosting, authentication, and media storage</li>
-        <li><strong>OpenAI</strong> — AI-powered content moderation of uploaded images (image data is sent for analysis and not retained by OpenAI beyond the API call)</li>
-        <li><strong>FatSecret API</strong> — Food database for nutrition logging</li>
-        <li><strong>RevenueCat</strong> — Subscription and entitlement management (receives App Store receipt data to verify purchase status)</li>
-        <li><strong>Apple App Store</strong> — Payment processing for all in-app purchases (card details and full payment data are never accessible to nonch. development)</li>
+        <li><strong>OpenAI</strong> — AI-powered content moderation of uploaded images, and AI food scanning (image data is sent for analysis and not retained by OpenAI beyond the API call)</li>
+        <li><strong>Anthropic</strong> — AI food scanning and AI training plan generation (data is sent for analysis and not retained by Anthropic beyond the API call)</li>
+        <li><strong>FatSecret API</strong> — Food database for nutrition logging (food search queries are sent to retrieve nutritional data)</li>
+        <li><strong>Open Food Facts</strong> — Open-source food database used as a fallback for barcode scanning (the barcode value is sent to retrieve product data; no personal information is transmitted)</li>
+        <li><strong>RevenueCat</strong> — Subscription and entitlement management (receives App Store and Google Play receipt data to verify purchase status)</li>
+        <li><strong>Google AdMob</strong> — Advertising network for non-personalised native ads within the social feed (receives device advertising identifier subject to user consent; no health, workout, or nutrition data is shared)</li>
+        <li><strong>Sentry</strong> — Crash and error reporting (receives stack traces, device type, OS version, and app version to diagnose issues; no personal data is included)</li>
+        <li><strong>PostHog</strong> — Product analytics (receives anonymised event data such as screen views and feature usage; no personal health data is sent)</li>
+        <li><strong>Apple App Store</strong> — Payment processing for iOS in-app purchases (card details and full payment data are never accessible to nonch. development)</li>
+        <li><strong>Google Play Store</strong> — Payment processing for Android in-app purchases (card details and full payment data are never accessible to nonch. development)</li>
       </ul>
       <h3>Legal Requirements</h3>
       <p>Data may be disclosed if required to do so by applicable law, court order, or governmental authority, or to protect the rights, property, or safety of nonch. development, users, or the public.</p>
@@ -738,7 +758,7 @@
         <li><strong>Edit profile data:</strong> Settings → Profile</li>
         <li><strong>Privacy controls:</strong> Settings → Privacy</li>
         <li><strong>Notification preferences:</strong> Settings → Notifications</li>
-        <li><strong>Manage subscription:</strong> Device Settings → [your name] → Subscriptions</li>
+        <li><strong>Manage subscription:</strong> Device Settings → [your name] → Subscriptions (iOS) or Google Play → Subscriptions (Android)</li>
         <li><strong>Delete account:</strong> Settings → Account Management → Delete Account</li>
       </ul>
     </section>
@@ -768,7 +788,7 @@
       <span class="section-num">10</span>
       <h2>Children's Privacy</h2>
       <p>gymmit. is not directed at children under the age of 13. Personal information is not knowingly collected from children under 13. If it is believed a child under 13 has created an account without parental consent, contact nonch. development immediately and the account and associated data will be deleted.</p>
-      <p>Users aged 13–17 are considered minors and must have parental or guardian consent to use gymmit. Parents are recommended to review the data their children share on the platform and use the available privacy settings to limit public visibility. In-app purchases by users under 18 require parental approval through Apple's Family Sharing controls.</p>
+      <p>Users aged 13–17 are considered minors and must have parental or guardian consent to use gymmit. Parents are recommended to review the data their children share on the platform and use the available privacy settings to limit public visibility. In-app purchases by users under 18 require parental approval through Apple's Family Sharing controls or Google's Family Link.</p>
     </section>
 
     <!-- ─── 11 ─────────────────────────────────────────────────────────── -->
@@ -778,10 +798,16 @@
       <p>gymmit. integrates with the following third-party services, each of which has its own privacy policy:</p>
       <ul>
         <li><strong>Supabase</strong> — Database and authentication infrastructure. <a href="https://supabase.com/privacy" style="color:var(--blue);" target="_blank">Privacy Policy ↗</a></li>
-        <li><strong>OpenAI</strong> — Content moderation API (images only, not stored). <a href="https://openai.com/policies/privacy-policy" style="color:var(--blue);" target="_blank">Privacy Policy ↗</a></li>
+        <li><strong>OpenAI</strong> — Content moderation API and AI food scanning (images analysed in real time, not stored). <a href="https://openai.com/policies/privacy-policy" style="color:var(--blue);" target="_blank">Privacy Policy ↗</a></li>
+        <li><strong>Anthropic</strong> — AI food scanning and AI training plan generation (data processed in real time, not stored). <a href="https://www.anthropic.com/privacy" style="color:var(--blue);" target="_blank">Privacy Policy ↗</a></li>
         <li><strong>FatSecret</strong> — Food database API for nutrition data. <a href="https://platform.fatsecret.com/api/Default.aspx?screen=pp" style="color:var(--blue);" target="_blank">Privacy Policy ↗</a></li>
-        <li><strong>RevenueCat</strong> — Subscription and entitlement management (receives App Store receipt data to verify and manage purchases). <a href="https://www.revenuecat.com/privacy" style="color:var(--blue);" target="_blank">Privacy Policy ↗</a></li>
-        <li><strong>Apple App Store</strong> — Payment processing for all in-app purchases. Card details and full payment data remain with Apple at all times. <a href="https://www.apple.com/legal/privacy/" style="color:var(--blue);" target="_blank">Privacy Policy ↗</a></li>
+        <li><strong>Open Food Facts</strong> — Open-source food database for barcode scanning fallback. Only the barcode value is transmitted. <a href="https://world.openfoodfacts.org/terms-of-use" style="color:var(--blue);" target="_blank">Terms of Use ↗</a></li>
+        <li><strong>RevenueCat</strong> — Subscription and entitlement management (receives App Store and Google Play receipt data to verify and manage purchases). <a href="https://www.revenuecat.com/privacy" style="color:var(--blue);" target="_blank">Privacy Policy ↗</a></li>
+        <li><strong>Google AdMob</strong> — Advertising within the social feed. <a href="https://policies.google.com/privacy" style="color:var(--blue);" target="_blank">Privacy Policy ↗</a></li>
+        <li><strong>Sentry</strong> — Crash and error reporting. <a href="https://sentry.io/privacy/" style="color:var(--blue);" target="_blank">Privacy Policy ↗</a></li>
+        <li><strong>PostHog</strong> — Product analytics. <a href="https://posthog.com/privacy" style="color:var(--blue);" target="_blank">Privacy Policy ↗</a></li>
+        <li><strong>Apple App Store</strong> — Payment processing for iOS in-app purchases. Card details and full payment data remain with Apple at all times. <a href="https://www.apple.com/legal/privacy/" style="color:var(--blue);" target="_blank">Privacy Policy ↗</a></li>
+        <li><strong>Google Play Store</strong> — Payment processing for Android in-app purchases. Card details and full payment data remain with Google at all times. <a href="https://policies.google.com/privacy" style="color:var(--blue);" target="_blank">Privacy Policy ↗</a></li>
       </ul>
       <p>gymmit. is not responsible for the privacy practices of these third-party services. Data shared with them is limited to what is strictly necessary for their respective functions.</p>
     </section>
@@ -805,7 +831,7 @@
         <p>In-app: Settings → Report a Bug</p>
         <p>Email: <a href="mailto:gymmit@nonch.uk">gymmit@nonch.uk</a></p>
         <br />
-        <p style="font-size:0.8rem;color:var(--muted);">Responses to all data rights requests will be provided within <strong style="color:var(--text);">30 days</strong> of receipt. For subscription billing issues, contact Apple directly at <a href="https://reportaproblem.apple.com" target="_blank">reportaproblem.apple.com</a>. See the <a href="gymmit-terms-of-service.html">Terms of Service</a> for the full conditions of using gymmit.</p>
+        <p style="font-size:0.8rem;color:var(--muted);">Responses to all data rights requests will be provided within <strong style="color:var(--text);">30 days</strong> of receipt. For subscription billing issues, contact Apple at <a href="https://reportaproblem.apple.com" target="_blank">reportaproblem.apple.com</a> or Google via the Play Store. See the <a href="gymmit-terms-of-service.html">Terms of Service</a> for the full conditions of using gymmit.</p>
       </div>
     </section>
 
