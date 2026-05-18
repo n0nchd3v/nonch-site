@@ -12,10 +12,10 @@
     :root {
       --blue: #0066FF;
       --blue-light: #3385FF;
-      --blue-glow: rgba(0,102,255,0.15);
+      --blue-glow: rgba(0,102,255,0.08);
       --blue-border: rgba(0,102,255,0.25);
       --gold: #FFB800;
-      --gold-glow: rgba(255,184,0,0.12);
+      --gold-glow: rgba(255,184,0,0.06);
       --gold-border: rgba(255,184,0,0.3);
       --bg: #050508;
       --surface: #0c0c10;
@@ -114,11 +114,11 @@
       font-size: 0.8rem !important;
       font-weight: 700 !important;
       font-family: 'Outfit', sans-serif !important;
-      transition: background 0.2s, box-shadow 0.2s !important;
+      transition: background 0.2s !important;
     }
     .nav-cta:hover {
       background: var(--blue-light) !important;
-      box-shadow: 0 0 20px rgba(0,102,255,0.3) !important;
+      
     }
 
     /* ── SHARED ── */
@@ -168,11 +168,11 @@
     .btn-primary {
       background: var(--blue);
       color: var(--white);
-      box-shadow: 0 0 24px rgba(0,102,255,0.2);
+      
     }
     .btn-primary:hover {
       background: var(--blue-light);
-      box-shadow: 0 0 36px rgba(0,102,255,0.35);
+      
       transform: translateY(-1px);
     }
     .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
@@ -188,19 +188,6 @@
       text-align: center;
       padding: 9rem 2rem 5rem;
       position: relative;
-    }
-
-    /* Hero glow */
-    #hero::before {
-      content: '';
-      position: absolute;
-      top: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(0,102,255,0.08) 0%, transparent 70%);
-      pointer-events: none;
     }
 
     .hero-badge {
@@ -471,7 +458,7 @@
       border-radius: 16px;
       padding: 2.5rem 2rem;
       position: relative;
-      transition: border-color 0.3s, box-shadow 0.3s;
+      transition: border-color 0.3s;
     }
     .price-card:hover {
       border-color: var(--blue-border);
@@ -482,7 +469,7 @@
       background: linear-gradient(165deg, var(--surface) 0%, rgba(255,184,0,0.03) 100%);
     }
     .price-card.premium:hover {
-      box-shadow: 0 0 40px rgba(255,184,0,0.06);
+      
       border-color: rgba(255,184,0,0.5);
     }
 
@@ -593,11 +580,11 @@
       color: white;
       cursor: pointer;
       transition: all 0.3s;
-      box-shadow: 0 0 30px rgba(0,102,255,0.25);
+      
     }
     .play-btn:hover {
       background: var(--blue-light);
-      box-shadow: 0 0 50px rgba(0,102,255,0.4);
+      
       transform: scale(1.05);
     }
 
@@ -645,18 +632,6 @@
       border-top: 1px solid var(--border);
       text-align: center;
       position: relative;
-    }
-
-    #download::before {
-      content: '';
-      position: absolute;
-      bottom: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(0,102,255,0.06) 0%, transparent 70%);
-      pointer-events: none;
     }
 
     .download-title {
@@ -1080,6 +1055,32 @@
         <div class="shot-ph"><span>+ Screen 2</span></div>
         <div class="shot-ph"><span>+ Screen 3</span></div>
         <div class="shot-ph"><span>+ Screen 4</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEEDBACK -->
+  <section id="feedback" style="padding:5rem 0;border-top:1px solid var(--border);">
+    <div class="wrap">
+      <div style="text-align:center;max-width:620px;margin:0 auto;" class="reveal">
+        <p class="tag">Early Days</p>
+        <h2 class="section-title">We're just<br><span>getting started.</span></h2>
+        <p style="font-size:0.95rem;color:var(--muted);margin-top:1rem;line-height:1.75;font-weight:400;">gymmit. is a brand-new app and we know there's always room to grow. If something feels off, if you have a feature idea, or if you just want to tell us what you think, we genuinely want to hear it. Every piece of feedback shapes what gymmit. becomes next.</p>
+        <div style="margin-top:2rem;background:var(--surface);border:1px solid var(--blue-border);border-radius:14px;padding:1.8rem 2rem;text-align:left;">
+          <p style="font-size:0.92rem;color:var(--white);font-weight:600;margin-bottom:0.6rem;">How to send feedback</p>
+          <p style="font-size:0.86rem;color:var(--muted);line-height:1.7;margin:0;">Use the in-app bug report feature at <strong style="color:var(--text);">Settings → Report a Bug</strong>, or email us directly at <a href="mailto:gymmit@nonch.uk" style="color:var(--blue);text-decoration:none;font-weight:600;">gymmit@nonch.uk</a>. We read everything and reply to as much as we can.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHARITY PLEDGE -->
+  <section id="charity" style="padding:5rem 0;border-top:1px solid var(--border);">
+    <div class="wrap">
+      <div style="text-align:center;max-width:620px;margin:0 auto;" class="reveal">
+        <p class="tag" style="color:#4ade80;">Giving Back</p>
+        <h2 class="section-title">5% of profits<br><span style="color:#4ade80;">go to charity.</span></h2>
+        <p style="font-size:0.95rem;color:var(--muted);margin-top:1rem;line-height:1.75;font-weight:400;">nonch. development commits to donating 5% of all profits to charitable causes, always. As gymmit. grows, so does the impact. Building something people use every day should mean something beyond the product itself.</p>
       </div>
     </div>
   </section>
